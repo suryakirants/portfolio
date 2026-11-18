@@ -203,3 +203,86 @@ h3{font-size:1.2rem;letter-spacing:-.01em}
 .boot-hint span{color:#00e5ff;padding:0 8px}
 @media(max-width:520px){.boot-window{transform:none}.boot-title{gap:9px;font-size:9px}.boot-lock{font-size:8px}.boot-body{min-height:205px}.boot-output>p:nth-child(2){line-height:1.8}}
 @media(prefers-reduced-motion:reduce){.boot-grid,.boot-window,.boot-cursor,.boot-progress i{animation:none!important}.boot-window{transform:none}}
+
+
+/* Scroll-linked depth, shared cyber atmosphere, and cross-device layout hardening */
+html { scroll-padding-top: 96px; }
+body { min-width: 320px; }
+.cyber-atmosphere {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden;
+  opacity: .38;
+  background: radial-gradient(ellipse at 12% 18%, rgba(0,229,255,.11), transparent 34%),
+    radial-gradient(ellipse at 88% 38%, rgba(139,92,246,.16), transparent 38%),
+    linear-gradient(rgba(0,229,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139,92,246,.04) 1px, transparent 1px);
+  background-size: auto, auto, 52px 52px, 52px 52px;
+}
+.cyber-atmosphere::before, .cyber-atmosphere::after {
+  content: ""; position: absolute; inset: -20%;
+  background: repeating-linear-gradient(128deg, transparent 0 105px, rgba(0,229,255,.07) 106px 107px, transparent 108px 210px);
+  transform: perspective(900px) rotateX(58deg) translateY(18%);
+  transform-origin: center;
+  mask-image: linear-gradient(transparent, #000 25%, #000 72%, transparent);
+}
+.cyber-atmosphere::after {
+  background: radial-gradient(circle, rgba(0,229,255,.45) 1px, transparent 2px);
+  background-size: 76px 76px; transform: none; opacity: .22;
+  animation: cyber-drift 32s linear infinite;
+}
+@keyframes cyber-drift { to { background-position: 76px 152px; } }
+.sec { isolation: isolate; }
+.sec > .wrap { transform: scale(var(--depth-scale, .985)); transform-origin: center center; transition: transform .12s linear; will-change: transform; }
+.sec::before {
+  content: ""; position: absolute; inset: 8% 0; z-index: -1; pointer-events: none;
+  opacity: calc(var(--depth-glow, 0) * .42);
+  background: radial-gradient(ellipse at 50% 48%, rgba(0,229,255,.075), transparent 66%);
+  transition: opacity .18s linear;
+}
+.hero-copy, .hero-art { min-width: 0; }
+.hero-copy { position: relative; z-index: 1; }
+.hero-art { max-width: 100%; }
+.hero h1 { overflow-wrap: anywhere; }
+.nav { max-width: calc(100% - 24px); }
+.nav nav { gap: .1rem; }
+.nav nav a { padding-inline: clamp(.35rem, .7vw, .7rem); }
+.about, .cgrid, .pgrid, .tools, .edu, .lgrid { min-width: 0; }
+.proj, .tool, .lab, .card { overflow-wrap: anywhere; }
+.clist a { display: inline-block; max-width: 100%; }
+.term .in { min-width: 0; }
+.term .in input { width: 100%; }
+@media (min-width: 901px) and (max-width: 1120px) {
+  .nav { width: calc(100% - 32px); }
+  .nav nav a { font-size: .82rem; padding-inline: .42rem; }
+  .hero { grid-template-columns: minmax(0,1fr) minmax(280px,.8fr); gap: 1rem; }
+  .hero h1 { font-size: clamp(3.5rem, 7vw, 6rem); }
+  .chips { right: -2%; }
+}
+@media (max-width: 900px) {
+  .sec > .wrap { transform: scale(var(--depth-scale, .99)); }
+  .cyber-atmosphere { opacity: .26; }
+  .nav { backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+  .hero { padding-inline: max(20px, calc(50% - 360px)); }
+}
+@media (max-width: 600px) {
+  .wrap { width: calc(100% - 36px); }
+  .sec { padding-block: 58px; }
+  .sec > .wrap { transform: scale(var(--depth-scale, .99)); }
+  .nav nav { max-height: min(70vh, 520px); overflow-y: auto; }
+  .hero { padding-top: 104px; }
+  .hero-copy, .hero-art { width: 100%; }
+  .stats { grid-template-columns: repeat(3, minmax(0,1fr)); }
+  .stats div { padding: .7rem .55rem; }
+  .stats span { overflow-wrap: anywhere; }
+  .boot-screen { padding: 16px; }
+  .boot-window { width: 100%; }
+}
+@media (max-width: 380px) {
+  .stats { grid-template-columns: 1fr; }
+  .nav { padding-left: .85rem; }
+  .hero h1 { font-size: clamp(2.55rem, 14vw, 3.6rem); }
+  .cta .btn { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cyber-atmosphere::after { animation: none; }
+  .sec > .wrap { transform: none !important; transition: none; }
+}
