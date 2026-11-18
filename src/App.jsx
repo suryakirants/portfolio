@@ -10,16 +10,48 @@ const GH = 'M9 19c-4 1.500-4-2-6-2m12 4v-3.500a3 3 0 0 0-1-2.500c3 0 6-2 6-5.500
 const LI = 'M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z M2 9h4v12H2z M4 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4'
 const ML = 'M3 5h18v14H3z M3 7l9 6 9-6'
 
-function Loader() {
-  const L = ['INITIALIZING SECURE CONNECTION...', 'LOADING PROFILE...', 'ESTABLISHING DIGITAL IDENTITY...', 'ACCESS GRANTED.']
-  const [n, setN] = useState(1), [gone, setGone] = useState(false)
+function BootSequence() {
+  const command = 'whoami'
+  const [typed, setTyped] = useState('')
+  const [stage, setStage] = useState('typing')
+  const [gone, setGone] = useState(false)
+
   useEffect(() => {
-    const t = setInterval(() => setN((x) => Math.min(x + 1, 4)), 330)
-    const o = setTimeout(() => setGone(true), 1750)
-    return () => { clearInterval(t); clearTimeout(o) }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setTyped(command); setStage('reveal')
+      const t = setTimeout(() => setGone(true), 900)
+      return () => clearTimeout(t)
+    }
+    let i = 0
+    const typing = setInterval(() => {
+      i += 1
+      setTyped(command.slice(0, i))
+      if (i >= command.length) {
+        clearInterval(typing)
+        setTimeout(() => setStage('output'), 420)
+        setTimeout(() => setStage('reveal'), 1450)
+        setTimeout(() => setGone(true), 2650)
+      }
+    }, 115)
+    return () => clearInterval(typing)
   }, [])
+
   if (gone) return null
-  return <div className={'loader' + (n === 4 ? ' done' : '')} aria-hidden="true">{L.slice(0, n).map((l, i) => <p key={l} className={i === 3 ? 'ok' : ''}>{'> ' + l}</p>)}</div>
+  return (
+    <div className={'boot-screen' + (stage === 'reveal' ? ' boot-exit' : '')} aria-label="Portfolio intro">
+      <div className="boot-grid" aria-hidden="true" />
+      <div className="boot-window">
+        <div className="boot-title"><span className="boot-lights"><i /><i /><i /></span><span>Windows PowerShell · suryakiran</span><span className="boot-lock">SECURE SESSION</span></div>
+        <div className="boot-body">
+          <p className="boot-path">PS C:\Users\Suryakiran\Portfolio&gt;</p>
+          <p className="boot-command"><span>{typed}</span><i className="boot-cursor" /></p>
+          {stage !== 'typing' && <div className="boot-output"><p className="boot-identity">SURYAKIRAN T S</p><p>Cyber Security Analyst <span className="boot-sep">/</span> SOC <span className="boot-sep">/</span> Digital Forensics</p><p className="boot-access">[ ACCESS GRANTED ] <span>IDENTITY VERIFIED</span></p></div>}
+        </div>
+        <div className="boot-footer"><span>PORTFOLIO INITIALIZATION</span><span className="boot-progress"><i /></span><span>{stage === 'typing' ? '01' : stage === 'output' ? '72' : '100'}%</span></div>
+      </div>
+      <p className="boot-hint">A PERSONAL DIGITAL SPACE <span>·</span> EST. 2026</p>
+    </div>
+  )
 }
 
 function useReveal() {
@@ -255,7 +287,7 @@ export default function App() {
   }, [])
   return (
     <>
-      <Loader /><Nav active={active} />
+      <BootSequence /><Nav active={active} />
       <main><Hero /><About /><Skills /><Experience /><Projects /><Labs /><Education /><Contact /></main>
       <footer className="foot"><div className="wrap">
         <div><strong>Suryakiran T S</strong><p>Cyber Security Analyst</p><p className="mono sm">Exploring threats. Investigating evidence. Securing digital environments.</p></div>
