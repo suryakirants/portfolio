@@ -171,3 +171,35 @@ h3{font-size:1.2rem;letter-spacing:-.01em}
  .tool:hover,.lab:hover{transform:translateY(-5px) perspective(900px) rotateX(1deg)}
  .idcard:hover{box-shadow:0 24px 70px rgba(84,37,168,.28),0 0 24px rgba(0,229,255,.12)}
 }
+
+
+/* Cinematic whoami boot sequence */
+.boot-screen{position:fixed;inset:0;z-index:1200;display:grid;place-items:center;overflow:hidden;padding:24px;background:radial-gradient(ellipse at 50% 48%,rgba(49,26,102,.42),transparent 55%),#030309;color:#e9e9f5;font-family:var(--mf);perspective:1400px;transition:opacity .8s ease,visibility .8s ease}
+.boot-screen.boot-exit{opacity:0;visibility:hidden;pointer-events:none}
+.boot-grid{position:absolute;inset:-30%;opacity:.25;background-image:linear-gradient(rgba(0,229,255,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(139,92,246,.14) 1px,transparent 1px);background-size:54px 54px;transform:rotateX(58deg) rotateZ(-13deg) translateY(18%);mask-image:radial-gradient(ellipse at center,#000 5%,transparent 68%);animation:boot-grid-drift 12s linear infinite}
+@keyframes boot-grid-drift{to{background-position:54px 108px}}
+.boot-window{position:relative;width:min(720px,100%);border:1px solid rgba(0,229,255,.38);border-radius:14px;background:linear-gradient(145deg,rgba(15,16,32,.97),rgba(5,7,16,.97));box-shadow:0 35px 110px rgba(0,0,0,.7),0 0 55px rgba(0,229,255,.12),inset 0 1px rgba(255,255,255,.06);overflow:hidden;transform:rotateX(5deg) rotateY(-5deg) translateY(0);animation:boot-window-in 1s cubic-bezier(.2,.8,.2,1) both}
+@keyframes boot-window-in{from{opacity:0;transform:rotateX(18deg) rotateY(-14deg) translateY(55px) scale(.88);filter:blur(8px)}to{opacity:1;transform:rotateX(5deg) rotateY(-5deg) translateY(0) scale(1);filter:blur(0)}}
+.boot-title{height:48px;display:flex;align-items:center;gap:14px;padding:0 17px;border-bottom:1px solid rgba(139,92,246,.2);background:rgba(255,255,255,.025);font-size:11px;color:#aaa9c2;letter-spacing:.04em}
+.boot-lights{display:flex;gap:6px}.boot-lights i{width:9px;height:9px;border-radius:50%;background:#ff5f57}.boot-lights i:nth-child(2){background:#febc2e}.boot-lights i:nth-child(3){background:#28c840}
+.boot-lock{margin-left:auto;color:#00e5ff;font-size:9px;letter-spacing:.13em}
+.boot-body{padding:clamp(25px,5vw,48px);min-height:220px;font-size:clamp(12px,2vw,15px)}
+.boot-path{color:#a7a5c2}.boot-command{margin-top:13px;min-height:28px;color:#fff;font-size:clamp(19px,4vw,27px);letter-spacing:.04em}
+.boot-command span{color:#00e5ff;text-shadow:0 0 18px rgba(0,229,255,.5)}
+.boot-cursor{display:inline-block;width:9px;height:1.1em;margin-left:5px;vertical-align:middle;background:#00e5ff;animation:boot-blink .8s steps(2,start) infinite}
+@keyframes boot-blink{to{visibility:hidden}}
+.boot-output{margin-top:25px;padding-top:20px;border-top:1px solid rgba(139,92,246,.22);animation:boot-output-in .55s ease both}
+@keyframes boot-output-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.boot-identity{font-family:var(--hf);font-size:clamp(23px,5vw,34px);font-weight:700;letter-spacing:.08em;color:#fff}
+.boot-output>p:nth-child(2){margin-top:5px;color:#aaa9c2;font-size:12px}
+.boot-sep{color:#00e5ff;padding:0 5px}
+.boot-access{margin-top:24px;color:#83ffbd;font-size:11px;letter-spacing:.1em}
+.boot-access span{color:#8e8ca8;margin-left:10px}
+.boot-footer{display:flex;align-items:center;gap:14px;padding:15px 20px;border-top:1px solid rgba(139,92,246,.2);color:#77758f;font-size:9px;letter-spacing:.12em}
+.boot-progress{height:3px;flex:1;background:rgba(255,255,255,.08);overflow:hidden;border-radius:9px}
+.boot-progress i{display:block;width:100%;height:100%;background:linear-gradient(90deg,#8b5cf6,#00e5ff);transform-origin:left;animation:boot-load 2.5s ease-out both;box-shadow:0 0 12px #00e5ff}
+@keyframes boot-load{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.boot-hint{position:absolute;bottom:clamp(22px,6vh,55px);color:#67657f;font-size:9px;letter-spacing:.2em;text-align:center}
+.boot-hint span{color:#00e5ff;padding:0 8px}
+@media(max-width:520px){.boot-window{transform:none}.boot-title{gap:9px;font-size:9px}.boot-lock{font-size:8px}.boot-body{min-height:205px}.boot-output>p:nth-child(2){line-height:1.8}}
+@media(prefers-reduced-motion:reduce){.boot-grid,.boot-window,.boot-cursor,.boot-progress i{animation:none!important}.boot-window{transform:none}}
