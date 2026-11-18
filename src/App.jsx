@@ -277,9 +277,33 @@ function Contact() {
   )
 }
 
+
+function useScrollDepth() {
+  useEffect(() => {
+    let frame = 0;
+    const update = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const vh = window.innerHeight || 1;
+        document.querySelectorAll('.sec').forEach((section) => {
+          const rect = section.getBoundingClientRect();
+          const distance = Math.min(1, Math.abs(rect.top + rect.height / 2 - vh * 0.52) / (vh * 0.9));
+          section.style.setProperty('--depth-scale', (1.025 - distance * 0.045).toFixed(3));
+          section.style.setProperty('--depth-glow', (1 - distance).toFixed(3));
+        });
+      });
+    };
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    return () => { cancelAnimationFrame(frame); window.removeEventListener('scroll', update); window.removeEventListener('resize', update); };
+  }, []);
+}
+
 export default function App() {
   const [active, setActive] = useState('home')
   useReveal()
+  useScrollDepth()
   useEffect(() => {
     const io = new IntersectionObserver((es) => es.forEach((e) => e.isIntersecting && setActive(e.target.id)), { rootMargin: '-45% 0px -50% 0px' })
     NAV.forEach((n) => { const el = document.getElementById(id(n)); el && io.observe(el) })
@@ -287,6 +311,7 @@ export default function App() {
   }, [])
   return (
     <>
+      <div className="cyber-atmosphere" aria-hidden="true"><span /><span /><span /></div>
       <BootSequence /><Nav active={active} />
       <main><Hero /><About /><Skills /><Experience /><Projects /><Labs /><Education /><Contact /></main>
       <footer className="foot"><div className="wrap">
