@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SURYAKIRAN T S — Cyber Security Analyst &amp; Digital Forensics Specialist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Syne:wght@700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ==================== 3D BINARY & SECURITY DATA-STREAM ==================== -->
+  <canvas id="binary-bg"></canvas>
+  <div class="cyber-vignette"></div>
+  <div class="cyber-scanline"></div>
+
+  <!-- ==================== ULTRA-FUTURISTIC CYBER HOLOGRAPHIC TERMINAL ==================== -->
+  <div id="preloader">
+    <div class="cyber-hud-frame">
+      <div class="hud-corner-bracket c-tl"></div>
+      <div class="hud-corner-bracket c-tr"></div>
+      <div class="hud-corner-bracket c-bl"></div>
+      <div class="hud-corner-bracket c-br"></div>
+
+      <div class="cyber-term-header">
+        <div class="cyber-term-logo">
+          <span class="cyber-glyph">&loz;</span>
+          <span class="cyber-sys-name">QUANTUM_CORE // GATEWAY [SEC-TTY/0]</span>
+        </div>
+        <div class="cyber-telemetry-mid">
+          <span class="tele-val">CIPHER: AES-GCM-512</span>
+          <span class="tele-dot">&bull;</span>
+          <span class="tele-val">NEURAL SYNC: ACTIVE</span>
+        </div>
+        <div class="cyber-status-pill">
+          <span class="pulse-indicator"></span>
+          <span>SECURE_LINK</span>
+        </div>
+      </div>
+
+      <div class="cyber-sub-status-bar">
+        <span>HOST: 0x7F000001 (127.0.0.1)</span>
+        <span>LATENCY: 0.08ms</span>
+        <span>INTEGRITY: 100%</span>
+        <span id="kali-live-clock">22:45:00 UTC</span>
+      </div>
+
+      <div class="cyber-term-body">
+        <div class="cyber-output-history" id="kali-history"></div>
+        <div class="cyber-active-command-line">
+          <span class="c-prompt">&gt;&gt; ROOT_SYS$ </span>
+          <span id="kali-typing-area" class="c-cmd-text"></span>
+          <span class="c-cursor">█</span>
+        </div>
+      </div>
+
+      <div class="cyber-term-footer">
+        <div class="quantum-meter-wrap">
+          <span class="quantum-label">DECRYPTION BUFFER:</span>
+          <div class="quantum-track">
+            <div class="quantum-fill" id="kali-meter-fill"></div>
+          </div>
+        </div>
+        <div class="quantum-hex-readout" id="kali-hex-counter">0x00 &rarr; 0x1337</div>
+        <span class="bypass-cue">[SECURE GATEWAY // INITIALIZING]</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== FUTURISTIC HUD CURSOR ==================== -->
+  <div class="custom-cursor" id="custom-cursor">
+    <div class="cursor-crosshair ch-top"></div>
+    <div class="cursor-crosshair ch-bottom"></div>
+    <div class="cursor-crosshair ch-left"></div>
+    <div class="cursor-crosshair ch-right"></div>
+  </div>
+  <div class="custom-cursor-dot" id="custom-cursor-dot"></div>
+
+  <!-- ==================== NAVIGATION BAR ==================== -->
+  <header id="main-header">
+    <a href="#" class="brand">
+      <div class="brand-badge">
+        <span class="pulse-ring"></span>
+        <span class="pulse-core"></span>
+      </div>
+      <div class="brand-text">
+        <span class="brand-name">SURYAKIRAN<span class="brand-ext">.SEC</span></span>
+        <span class="brand-sub">CYBER DEFENSE INTELLIGENCE</span>
+      </div>
+    </a>
+
+    <nav class="desktop-nav">
+      <a href="#intro" class="nav-link"><span class="nav-idx">01</span><span class="nav-label">Briefing</span></a>
+      <a href="#dossier" class="nav-link"><span class="nav-idx">02</span><span class="nav-label">Dossier</span></a>
+      <a href="#capabilities" class="nav-link"><span class="nav-idx">03</span><span class="nav-label">Capabilities</span></a>
+      <a href="#tools" class="nav-link"><span class="nav-idx">04</span><span class="nav-label">Arsenal</span></a>
+      <a href="#projects" class="nav-link"><span class="nav-idx">05</span><span class="nav-label">Operations</span></a>
+      <a href="#contact" class="nav-link"><span class="nav-idx">06</span><span class="nav-label">Contact</span></a>
+      <div class="nav-social-cluster">
+        <a href="https://github.com/suryakirants" target="_blank" rel="noopener" class="nav-social-btn" aria-label="GitHub Profile" title="GitHub Profile">
+          <svg viewBox="0 0 24 24" class="svg-nav-icon"><path fill="currentColor" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          <span class="nav-social-text">GITHUB</span>
+        </a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener" class="nav-social-btn" aria-label="LinkedIn Profile" title="LinkedIn Profile">
+          <svg viewBox="0 0 24 24" class="svg-nav-icon"><path fill="currentColor" d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.09a1.45 1.45 0 0 0-1.45 1.45 1.45 1.45 0 0 0 1.45 1.45 1.45 1.45 0 0 0 1.45-1.45 1.45 1.45 0 0 0-1.45-1.45Z"/></svg>
+          <span class="nav-social-text">LINKEDIN</span>
+        </a>
+      </div>
+      <a href="assets/Suryakiran_TS_Resume.pdf" download class="btn-hud-resume">
+        <span class="btn-text">RESUME.PDF</span>
+        <span class="btn-icon">&darr;</span>
+      </a>
+    </nav>
+
+    <button class="hamburger-menu" id="hamburger-btn" aria-label="Toggle cyber menu">
+      <span class="bar bar-1"></span>
+      <span class="bar bar-2"></span>
+      <span class="bar bar-3"></span>
+    </button>
+  </header>
+
+  <!-- ==================== MOBILE MENU OVERLAY ==================== -->
+  <div class="mobile-nav-panel" id="mobile-nav">
+    <div class="mobile-nav-links">
+      <a href="#intro" class="mobile-link"><span class="m-num">01 //</span> PROFILE BRIEFING</a>
+      <a href="#dossier" class="mobile-link"><span class="m-num">02 //</span> OPERATOR DOSSIER</a>
+      <a href="#capabilities" class="mobile-link"><span class="m-num">03 //</span> CAPABILITIES</a>
+      <a href="#tools" class="mobile-link"><span class="m-num">04 //</span> SECURITY ARSENAL</a>
+      <a href="#projects" class="mobile-link"><span class="m-num">05 //</span> DEPLOYED OPERATIONS</a>
+      <a href="#contact" class="mobile-link"><span class="m-num">06 //</span> ESTABLISH CONNECTION</a>
+      <a href="assets/Suryakiran_TS_Resume.pdf" download class="mobile-resume-btn">DOWNLOAD RESUME (PDF)</a>
+    </div>
+  </div>
+
+  <!-- ==================== HERO SECTION (HD PHOTO + PARTICLE DISPERSION) ==================== -->
+  <section class="hero-section" id="hero">
+    <!-- Particle canvas for convergence & scroll dispersal -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Real Photo Shard Matrix Stage (Pieces assemble into the photo, and shatter on scroll) -->
+    <div class="hero-photo-stage" id="hero-photo-stage">
+      <div class="hud-photo-frame" id="hud-photo-frame">
+        <div class="photo-reticle r-tl"></div>
+        <div class="photo-reticle r-tr"></div>
+        <div class="photo-reticle r-bl"></div>
+        <div class="photo-reticle r-br"></div>
+        <div class="photo-scanner-beam"></div>
+        
+        <img 
+          src="assets/images/surya-hero-main.png" 
+          alt="Suryakiran T S — Cyber Security Specialist" 
+          class="hero-hd-photo" 
+          id="hero-hd-photo"
+          style="visibility: hidden;"
+        />
+
+        <div class="photo-hud-badge">
+          <span class="badge-dot-live"></span>
+          <span>OPERATOR // SURYAKIRAN T S</span>
+        </div>
+      </div>
+
+      <!-- Location & Honors situated directly under the main photo -->
+      <div class="photo-under-telemetry" id="photo-under-telemetry">
+        <div class="photo-tele-pill">
+          <span class="tele-dot"></span>
+          <span class="tele-label">LOCATION:</span>
+          <span class="tele-val">ERNAKULAM, KERALA</span>
+        </div>
+        <div class="photo-tele-pill">
+          <span class="tele-dot green"></span>
+          <span class="tele-label">ACADEMIC HONORS:</span>
+          <span class="tele-val">UNIV. 2ND RANK (M.SC)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-content-wrapper">
+      <!-- Top HUD Meta bar -->
+      <div class="hero-hud-top">
+        <div class="hud-status-badge">
+          <span class="status-indicator"></span>
+          <span class="status-msg">ACTIVE DEFENSE &bull; OPEN TO SOC / CYBER ANALYST ROLES</span>
+        </div>
+      </div>
+
+      <!-- Bottom Typography & Actions -->
+      <div class="hero-hud-bottom">
+        <div class="hero-tagline">
+          <span class="tag-bracket">[</span> DEFENSIVE ARCHITECT &bull; SOC &bull; DIGITAL FORENSICS <span class="tag-bracket">]</span>
+        </div>
+        <h1 class="hero-glitch-title" data-text="SURYAKIRAN T S">
+          SURYAKIRAN T S
+        </h1>
+        <div class="hero-social-prominent-bar">
+          <a href="https://github.com/suryakirants" target="_blank" rel="noopener" class="hero-soc-pill">
+            <svg viewBox="0 0 24 24" class="svg-soc-mark"><path fill="currentColor" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            <span class="soc-name">GITHUB</span>
+            <span class="soc-handle">@suryakirants</span>
+            <span class="soc-arrow">&rarr;</span>
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener" class="hero-soc-pill">
+            <svg viewBox="0 0 24 24" class="svg-soc-mark"><path fill="currentColor" d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.09a1.45 1.45 0 0 0-1.45 1.45 1.45 1.45 0 0 0 1.45 1.45 1.45 1.45 0 0 0 1.45-1.45 1.45 1.45 0 0 0-1.45-1.45Z"/></svg>
+            <span class="soc-name">LINKEDIN</span>
+            <span class="soc-handle">PROFILE</span>
+            <span class="soc-arrow">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 01 // BRIEFING & CREDENTIALS ==================== -->
+  <section id="intro" class="cyber-section" data-animate>
+    <div class="section-decor-line"></div>
+    <div class="section-header-block">
+      <div class="section-tag-hud">
+        <span class="tag-glyph">01 //</span> PROFILE BRIEFING
+      </div>
+      <div class="section-hud-serial">SEC-ID: #8849-SYR</div>
+    </div>
+
+    <p class="intro-reveal-text" id="scroll-reveal-text">
+      M.Sc. Cyber Forensics postgraduate (University 2nd Rank) and Cyber Security Faculty Intern defending networks through SIEM log analysis, threat detection, disk forensics, and offensive web security testing.
+    </p>
+
+    <div class="credentials-grid">
+      <div class="cred-card hud-box tilt-card" data-animate>
+        <div class="hud-corner c-tl"></div><div class="hud-corner c-tr"></div>
+        <div class="hud-corner c-bl"></div><div class="hud-corner c-br"></div>
+        <div class="cred-tag">01 / APPOINTMENT</div>
+        <div class="cred-title">Cyber Security Faculty Intern</div>
+        <div class="cred-desc">Blitz Academy Pvt. Ltd., Kochi</div>
+        <div class="cred-meta">Aug 2026 &ndash; Present &bull; Hands-on SOC &amp; CEH Instruction</div>
+      </div>
+
+      <div class="cred-card hud-box tilt-card" data-animate>
+        <div class="hud-corner c-tl"></div><div class="hud-corner c-tr"></div>
+        <div class="hud-corner c-bl"></div><div class="hud-corner c-br"></div>
+        <div class="cred-tag">02 / POSTGRADUATE</div>
+        <div class="cred-title">M.Sc. Cyber Forensics</div>
+        <div class="cred-desc">MG University, Kerala</div>
+        <div class="cred-meta">A Grade &bull; University 2nd Rank (2024&ndash;2026)</div>
+      </div>
+
+      <div class="cred-card hud-box tilt-card" data-animate>
+        <div class="hud-corner c-tl"></div><div class="hud-corner c-tr"></div>
+        <div class="hud-corner c-bl"></div><div class="hud-corner c-br"></div>
+        <div class="cred-tag">03 / UNDERGRADUATE</div>
+        <div class="cred-title">B.Sc. Cyber Forensics</div>
+        <div class="cred-desc">MG University, Kerala</div>
+        <div class="cred-meta">A+ Grade &bull; University 5th Rank (2021&ndash;2024)</div>
+      </div>
+
+      <div class="cred-card hud-box tilt-card" data-animate>
+        <div class="hud-corner c-tl"></div><div class="hud-corner c-tr"></div>
+        <div class="hud-corner c-bl"></div><div class="hud-corner c-br"></div>
+        <div class="cred-tag">04 / ACCREDITATIONS</div>
+        <div class="cred-title">PGP in Cyber Forensics</div>
+        <div class="cred-desc">Professional Training Suite</div>
+        <div class="cred-meta">CEH &bull; Certified SOC Analyst &bull; CHFI Labs</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 02 // INTERACTIVE OPERATOR DOSSIER (2ND PHOTO SHOWCASE) ==================== -->
+  <section id="dossier" class="cyber-section" data-animate>
+    <div class="section-decor-line"></div>
+    <div class="section-header-block">
+      <div>
+        <div class="section-tag-hud"><span class="tag-glyph">02 //</span> FORENSIC DOSSIER</div>
+        <h2 class="cyber-heading">OPERATOR PROFILE // VERIFIED</h2>
+      </div>
+      <div class="hud-inline-note">BIOMETRIC AUTH: PASS // THREAT MONITOR ACTIVE</div>
+    </div>
+
+    <div class="dossier-interactive-grid">
+      <!-- Interactive 3D Holographic Chamber (3D Cyber Modeling Stage) -->
+      <div class="dossier-photo-card hud-box" id="dossier-card">
+        <div class="hud-corner c-tl"></div><div class="hud-corner c-tr"></div>
+        <div class="hud-corner c-bl"></div><div class="hud-corner c-br"></div>
+
+        <div class="dossier-card-header">
+          <div class="dossier-badge-wrap">
+            <span class="live-radar-dot"></span>
+            <span>3D HOLOGRAPHIC RIG // [CAM_02]</span>
+          </div>
+          <div class="dossier-audio-viz">
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+
+        <div class="dossier-holo-chamber" id="dossier-chamber">
+          <!-- 3D Holographic Floor Grid Pedestal -->
+          <div class="holo-pedestal-grid"></div>
+          
+          <!-- Dynamic Canvas for 3D Wireframe Rings & Orbital Gizmos -->
+          <canvas id="holo-3d-canvas" class="holo-3d-canvas"></canvas>
+
+          <!-- 3D Floating Silhouette Stage -->
+          <div class="holo-model-stage" id="holo-model-stage">
+            <div class="holo-laser-sweep" id="dossier-laser"></div>
+            <img 
+              src="assets/images/surya-profile-transparent.png" 
+              alt="Suryakiran T S — 3D Cyber Profile" 
+              class="dossier-profile-img" 
+              id="dossier-img"
+            />
+            
+            <!-- 3D Biometric Callout Anchors -->
+            <div class="holo-node-tag node-head">
+              <span class="node-dot"></span>
+              <span class="node-label">CRANIAL // THREAT_INTEL</span>
+            </div>
+            <div class="holo-node-tag node-chest">
+              <span class="node-dot"></span>
+              <span class="node-label">CORE // MG_UNIV_RANK_2</span>
+            </div>
+            <div class="holo-node-tag node-arm">
+              <span class="node-dot"></span>
+              <span class="node-label">TACTICAL // CEH_SOC</span>
+            </div>
+          </div>
+
+          <div class="dossier-hud-overlay">
+            <div class="target-crosshair"></div>
+            <div class="hud-coord-readout">
+              <span>YAW: <span id="holo-yaw">0°</span></span>
+              <span>PITCH: <span id="holo-pitch">0°</span></span>
+              <span>DEPTH: 3D-MODEL ACTIVE</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dossier-card-footer">
+          <div class="dossier-ctrl-row">
+            <button class="btn-dossier-filter active" id="filter-holo">3D HOLOGRAM</button>
+            <button class="btn-dossier-filter" id="filter-scan">LiDAR SCAN</button>
+            <button class="btn-dossier-filter" id="filter-xray">X-RAY MATRIX</button>
+          </div>
+          <div class="dossier-status-text" id="dossier-status">3D HOLOGRAPHIC RIG ENGAGED</div>
+        </div>
+      </div>
+
+      <!-- Operator Technical Breakdown -->
+      <div class="dossier-intel-card hud-box">
+        <div class="hud-corner c-tl"></div><div class="hud-corner c-tr"></div>
+        <div class="hud-corner c-bl"></div><div class="hud-corner c-br"></div>
+
+        <div class="intel-header">
+          <span class="intel-tag">ANALYST SPECS</span>
+          <span class="intel-clearance">CLEARANCE: LEVEL-5 (SOC LEAD)</span>
+        </div>
+
+        <h3 class="intel-headline">Defending Critical Infrastructure Through Scientific Forensics &amp; Threat Intelligence</h3>
+        
+        <p class="intel-body">
+          Specializing in end-to-end incident investigation, threat telemetry correlation, and adversary profiling. Combined academic excellence (University 2nd Rank in M.Sc. Cyber Forensics) with frontline training experience at Blitz Academy Kochi—educating upcoming professionals in live CEH attack simulations and enterprise SOC incident response.
+        </p>
+
+        <div class="intel-metric-grid">
+          <div class="metric-block">
+            <span class="metric-num">02</span>
+            <span class="metric-label">University Rank (M.Sc)</span>
+          </div>
+          <div class="metric-block">
+            <span class="metric-num">12+</span>
+            <span class="metric-label">Combat Tools Mastered</span>
+          </div>
+          <div class="metric-block">
+            <span class="metric-num">04</span>
+            <span class="metric-label">Production Repositories</span>
+          </div>
+          <div class="metric-block">
+            <span class="metric-num">100%</span>
+            <span class="metric-label">Chain of Custody Integrity</span>
+          </div>
+        </div>
+
+        <div class="intel-quote-box">
+          <div class="quote-symbol">&ldquo;</div>
+          <p>Security is not merely detection—it is unshakeable evidentiary proof, rigorous timeline reconstruction, and proactive adversary deception.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== DUAL INFINITE STREAM MARQUEE ==================== -->
+  <div class="stream-marquee-container" aria-label="Skills Marquee">
+    <div class="marquee-edge-fade edge-left"></div>
+    <div class="marquee-edge-fade edge-right"></div>
+    
+    <div class="marquee-stream track-left">
+      <div class="stream-badge"><span class="badge-dot cyan"></span>SPLUNK SIEM ARCHITECTURE</div>
+      <div class="stream-badge"><span class="badge-dot green"></span>WAZUH EDR &amp; HIDS</div>
+      <div class="stream-badge"><span class="badge-dot cyan"></span>WIRESHARK PCAP ANALYSIS</div>
+      <div class="stream-badge"><span class="badge-dot green"></span>NMAP RECONNAISSANCE</div>
+      <div class="stream-badge"><span class="badge-dot cyan"></span>BURP SUITE PROFESSIONAL</div>
+      <div class="stream-badge"><span class="badge-dot green"></span>AUTOPSY DIGITAL FORENSICS</div>
+      <div class="stream-badge"><span class="badge-dot cyan"></span>FTK IMAGER EVIDENCE TRIAGE</div>
+      <div class="stream-badge"><span class="badge-dot green"></span>KALI LINUX OFFENSIVE LABS</div>
+      <div class="stream-badge"><span class="badge-dot cyan"></span>PYTHON SECURITY AUTOMATION</div>
+      <div class="stream-badge"><span class="badge-dot cyan"></span>SPLUNK SIEM ARCHITECTURE</div>
+      <div class="stream-badge"><span class="badge-dot green"></span>WAZUH EDR &amp; HIDS</div>
+      <div class="stream-badge"><span class="badge-dot cyan"></span>WIRESHARK PCAP ANALYSIS</div>
+      <div class="stream-badge"><span class="badge-dot green"></span>NMAP RECONNAISSANCE</div>
+      <div class="stream-badge"><span class="badge-dot cyan"></span>BURP SUITE PROFESSIONAL</div>
+      <div class="stream-badge"><span class="badge-dot green"></span>AUTOPSY DIGITAL FORENSICS</div>
+      <div class="stream-badge"><span class="badge-dot cyan"></span>FTK IMAGER EVIDENCE TRIAGE</div>
+      <div class="stream-badge"><span class="badge-dot green"></span>KALI LINUX OFFENSIVE LABS</div>
+      <div class="stream-badge"><span class="badge-dot cyan"></span>PYTHON SECURITY AUTOMATION</div>
+    </div>
+
+    <div class="marquee-stream track-right">
+      <div class="stream-badge"><span class="badge-dot red"></span>ALERT TRIAGE &amp; INCIDENT ESCALATION</div>
+      <div class="stream-badge"><span class="badge-dot cyan"></span>FORENSIC DISK IMAGING (RAW / E01 / AFF)</div>
+      <div class="stream-badge"><span class="badge-dot green"></span>CRYPTOGRAPHIC EVIDENCE VERIFICATION</div>
+      <div class="stream-badge"><span class="badge-dot red"></span>HONEYPOT &amp; PHISHING TRAP ANALYSIS</div>
+      <div class="stream-badge"><span class="badge-dot cyan"></span>OWASP TOP 10 VULNERABILITY AUDITS</div>
+      <div class="stream-badge"><span class="badge-dot green"></span>WATERMARKING &amp; DATA EXFIL PREV.</div>
+      <div class="stream-badge"><span class="badge-dot red"></span>STATIC MALWARE ANALYSIS &amp; HASHING</div>
+      <div class="stream-badge"><span class="badge-dot red"></span>ALERT TRIAGE &amp; INCIDENT ESCALATION</div>
+      <div class="stream-badge"><span class="badge-dot cyan"></span>FORENSIC DISK IMAGING (RAW / E01 / AFF)</div>
+      <div class="stream-badge"><span class="badge-dot green"></span>CRYPTOGRAPHIC EVIDENCE VERIFICATION</div>
+      <div class="stream-badge"><span class="badge-dot red"></span>HONEYPOT &amp; PHISHING TRAP ANALYSIS</div>
+      <div class="stream-badge"><span class="badge-dot cyan"></span>OWASP TOP 10 VULNERABILITY AUDITS</div>
+      <div class="stream-badge"><span class="badge-dot green"></span>WATERMARKING &amp; DATA EXFIL PREV.</div>
+      <div class="stream-badge"><span class="badge-dot red"></span>STATIC MALWARE ANALYSIS &amp; HASHING</div>
+    </div>
+  </div>
+
+  <!-- ==================== 03 // CAPABILITIES ACCORDION ==================== -->
+  <section id="capabilities" class="cyber-section" data-animate>
+    <div class="section-decor-line"></div>
+    <div class="section-header-block">
+      <div>
+        <div class="section-tag-hud"><span class="tag-glyph">03 //</span> CORE OPERATIONAL DOMAINS</div>
+        <h2 class="cyber-heading">WHAT I CAN DEFEND</h2>
+      </div>
+      <div class="hud-inline-note">[ CLICK MODULE TO INSPECT DETAILED SPECS ]</div>
+    </div>
+
+    <div class="accordion-container">
+      <div class="accordion-item active">
+        <button class="accordion-trigger" aria-expanded="true">
+          <div class="acc-meta">
+            <span class="acc-code">DOM-01</span>
+            <span class="acc-name">SOC Monitoring, SIEM Pipelines &amp; Alert Triage</span>
+          </div>
+          <span class="acc-chevron">&#10148;</span>
+        </button>
+        <div class="accordion-content" style="max-height: 240px;">
+          <div class="accordion-body">
+            <p>Real-time log ingestion, correlation rule tuning, brute-force detection, and incident escalation using enterprise SIEM and endpoint monitoring pipelines. Skilled at building custom dashboards and writing detection rules that cut false-positive noise while surfacing genuine threats across distributed systems.</p>
+            <div class="tech-chip-group">
+              <span class="t-chip">Splunk SIEM</span>
+              <span class="t-chip">Wazuh EDR</span>
+              <span class="t-chip">Log Correlation</span>
+              <span class="t-chip">Alert Escalation</span>
+              <span class="t-chip">MITRE ATT&CK Mapping</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false">
+          <div class="acc-meta">
+            <span class="acc-code">DOM-02</span>
+            <span class="acc-name">Digital Forensics, Disk Imaging &amp; Evidence Acquisition</span>
+          </div>
+          <span class="acc-chevron">&#10148;</span>
+        </button>
+        <div class="accordion-content">
+          <div class="accordion-body">
+            <p>Forensic disk imaging in RAW, E01, and AFF formats with cryptographic hash verification (MD5/SHA-256), deleted file recovery, artifact timeline reconstruction, and court-ready forensic documentation. Experienced in preserving chain of custody and generating legally admissible evidence reports for incident investigations.</p>
+            <div class="tech-chip-group">
+              <span class="t-chip">Autopsy</span>
+              <span class="t-chip">FTK Imager</span>
+              <span class="t-chip">E01 / AFF / RAW</span>
+              <span class="t-chip">Cryptographic Hashing</span>
+              <span class="t-chip">Chain of Custody</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false">
+          <div class="acc-meta">
+            <span class="acc-code">DOM-03</span>
+            <span class="acc-name">Network Packet Inspection &amp; Attack Surface Mapping</span>
+          </div>
+          <span class="acc-chevron">&#10148;</span>
+        </button>
+        <div class="accordion-content">
+          <div class="accordion-body">
+            <p>Deep packet inspection to uncover anomalous C2 beacons, port scans, credential leaks, and exposed services across enterprise networks. Proficient in building network baselines, identifying lateral movement, analyzing PCAP captures, and pinpointing zero-day exposure vectors.</p>
+            <div class="tech-chip-group">
+              <span class="t-chip">Wireshark</span>
+              <span class="t-chip">Nmap Recon</span>
+              <span class="t-chip">Packet Dissection</span>
+              <span class="t-chip">C2 Beacon Detection</span>
+              <span class="t-chip">Network Baselines</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false">
+          <div class="acc-meta">
+            <span class="acc-code">DOM-04</span>
+            <span class="acc-name">Web Application Penetration Testing &amp; OWASP Auditing</span>
+          </div>
+          <span class="acc-chevron">&#10148;</span>
+        </button>
+        <div class="accordion-content">
+          <div class="accordion-body">
+            <p>Intercepting, fuzzing, and auditing web applications against OWASP Top 10 flaws including authentication bypasses, SQL injection, cross-site scripting (XSS), and directory traversal. Hands-on experience with manual testing methodologies combined with automated scanning for comprehensive vulnerability remediation.</p>
+            <div class="tech-chip-group">
+              <span class="t-chip">Burp Suite Pro</span>
+              <span class="t-chip">OWASP Top 10</span>
+              <span class="t-chip">Dirsearch</span>
+              <span class="t-chip">Kali Linux</span>
+              <span class="t-chip">Vulnerability Scans</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false">
+          <div class="acc-meta">
+            <span class="acc-code">DOM-05</span>
+            <span class="acc-name">Cyber Security Faculty Mentorship &amp; Lab Simulation</span>
+          </div>
+          <span class="acc-chevron">&#10148;</span>
+        </button>
+        <div class="accordion-content">
+          <div class="accordion-body">
+            <p>Delivering hands-on CEH and SOC training sessions at Blitz Academy Kochi—guiding students through live attack simulations, SIEM log triage, and forensic investigations. Creating realistic virtual lab environments that replicate modern red/blue team engagements for applied practical learning.</p>
+            <div class="tech-chip-group">
+              <span class="t-chip">CEH Instruction</span>
+              <span class="t-chip">SOC Triage Labs</span>
+              <span class="t-chip">Attack Simulations</span>
+              <span class="t-chip">Technical Mentorship</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 04 // SECURITY ARSENAL ==================== -->
+  <section id="tools" class="cyber-section" data-animate>
+    <div class="section-decor-line"></div>
+    <div class="section-header-block">
+      <div>
+        <div class="section-tag-hud"><span class="tag-glyph">04 //</span> TACTICAL TOOLSET</div>
+        <h2 class="cyber-heading">CYBER SECURITY ARSENAL</h2>
+      </div>
+      <div class="hud-inline-note">STATUS: 12 COMBAT-TESTED WEAPONS VERIFIED</div>
+    </div>
+    <p class="section-subtitle">
+      Specialized software, defensive platforms, and offensive utilities battle-tested across incident triage, live forensics cases, and penetration audits.
+    </p>
+
+    <div class="arsenal-grid">
+      <!-- Splunk -->
+      <div class="arsenal-card hud-box tilt-card" data-animate>
+        <div class="hud-corner c-tl"></div><div class="hud-corner c-tr"></div>
+        <div class="hud-corner c-bl"></div><div class="hud-corner c-br"></div>
+        <div class="arsenal-card-head">
+          <div class="tool-icon-shield">
+            <img src="assets/images/tools/splunk.png" alt="Splunk SIEM Logo" class="tool-brand-img" loading="lazy">
+          </div>
+          <span class="tool-serial">TOOL // 01</span>
+        </div>
+        <h4 class="tool-title">Splunk SIEM</h4>
+        <p class="tool-summary">Enterprise-grade log correlation, custom dashboards, real-time threat alert indexing across distributed infrastructure.</p>
+        <div class="card-footer-tag">SIEM &amp; SOC LOGS</div>
+      </div>
+
+      <!-- Wazuh -->
+      <div class="arsenal-card hud-box tilt-card" data-animate>
+        <div class="hud-corner c-tl"></div><div class="hud-corner c-tr"></div>
+        <div class="hud-corner c-bl"></div><div class="hud-corner c-br"></div>
+        <div class="arsenal-card-head">
+          <div class="tool-icon-shield">
+            <img src="assets/images/tools/wazuh.png" alt="Wazuh EDR Logo" class="tool-brand-img" loading="lazy">
+          </div>
+          <span class="tool-serial">TOOL // 02</span>
+        </div>
+        <h4 class="tool-title">Wazuh</h4>
+        <p class="tool-summary">Unified XDR/HIDS platform managing endpoint telemetry, file integrity checks, compliance, and threat mitigation.</p>
+        <div class="card-footer-tag">EDR &amp; ENDPOINT</div>
+      </div>
+
+      <!-- Wireshark -->
+      <div class="arsenal-card hud-box tilt-card" data-animate>
+        <div class="hud-corner c-tl"></div><div class="hud-corner c-tr"></div>
+        <div class="hud-corner c-bl"></div><div class="hud-corner c-br"></div>
+        <div class="arsenal-card-head">
+          <div class="tool-icon-shield">
+            <img src="assets/images/tools/wireshark.png" alt="Wireshark Logo" class="tool-brand-img" loading="lazy">
+          </div>
+          <span class="tool-serial">TOOL // 03</span>
+        </div>
+        <h4 class="tool-title">Wireshark</h4>
+        <p class="tool-summary">Deep packet inspection, protocol dissection, anomalous stream extraction, and covert C2 channel discovery.</p>
+        <div class="card-footer-tag">PACKET ANALYSIS</div>
+      </div>
+
+      <!-- Nmap -->
+      <div class="arsenal-card hud-box tilt-card" data-animate>
+        <div class="hud-corner c-tl"></div><div class="hud-corner c-tr"></div>
+        <div class="hud-corner c-bl"></div><div class="hud-corner c-br"></div>
+        <div class="arsenal-card-head">
+          <div class="tool-icon-shield">
+            <img src="assets/images/tools/nmap.png" alt="Nmap Logo" class="tool-brand-img" loading="lazy">
+          </div>
+          <span class="tool-serial">TOOL // 04</span>
+        </div>
+        <h4 class="tool-title">Nmap</h4>
+        <p class="tool-summary">Tactical network mapping, active service fingerprinting, OS detection, and port scanning via NSE scripts.</p>
+        <div class="card-footer-tag">RECONNAISSANCE</div>
+      </div>
+
+      <!-- Burp Suite -->
+      <div class="arsenal-card hud-box tilt-card" data-animate>
+        <div class="hud-corner c-tl"></div><div class="hud-corner c-tr"></div>
+        <div class="hud-corner c-bl"></div><div class="hud-corner c-br"></div>
+        <div class="arsenal-card-head">
+          <div class="tool-icon-shield">
+            <img src="assets/images/tools/burpsuite.png" alt="Burp Suite Logo" class="tool-brand-img" loading="lazy">
+          </div>
+          <span class="tool-serial">TOOL // 05</span>
+        </div>
+        <h4 class="tool-title">Burp Suite</h4>
+        <p class="tool-summary">HTTP request proxy interception, fuzzing, parameter tampering, and OWASP Top 10 vulnerability verification.</p>
+        <div class="card-footer-tag">WEB SECURITY</div>
+      </div>
+
+      <!-- Autopsy -->
+      <div class="arsenal-card hud-box tilt-card" data-animate>
+        <div class="hud-corner c-tl"></div><div class="hud-corner c-tr"></div>
+        <div class="hud-corner c-bl"></div><div class="hud-corner c-br"></div>
+        <div class="arsenal-card-head">
+          <div class="tool-icon-shield">
+            <img src="assets/images/tools/autopsy.png" alt="Autopsy Digital Forensics Logo" class="tool-brand-img" loading="lazy">
+          </div>
+          <span class="tool-serial">TOOL // 06</span>
+        </div>
+        <h4 class="tool-title">Autopsy</h4>
+        <p class="tool-summary">Open-source forensic platform for disk image examination, artifact recovery, and event timeline sequencing.</p>
+        <div class="card-footer-tag">DIGITAL FORENSICS</div>
+      </div>
+
+      <!-- FTK Imager -->
+      <div class="arsenal-card hud-box tilt-card" data-animate>
+        <div class="hud-corner c-tl"></div><div class="hud-corner c-tr"></div>
+        <div class="hud-corner c-bl"></div><div class="hud-corner c-br"></div>
+        <div class="arsenal-card-head">
+          <div class="tool-icon-shield">
+            <img src="assets/images/tools/ftkimager.png" alt="FTK Imager Logo" class="tool-brand-img" loading="lazy">
+          </div>
+          <span class="tool-serial">TOOL // 07</span>
+        </div>
+        <h4 class="tool-title">FTK Imager</h4>
+        <p class="tool-summary">Forensic disk acquisition in E01, RAW, and AFF formats with automatic cryptographic MD5/SHA integrity hashes.</p>
+        <div class="card-footer-tag">EVIDENCE ACQUISITION</div>
+      </div>
+
+      <!-- Kali Linux -->
+      <div class="arsenal-card hud-box tilt-card" data-animate>
+        <div class="hud-corner c-tl"></div><div class="hud-corner c-tr"></div>
+        <div class="hud-corner c-bl"></div><div class="hud-corner c-br"></div>
+        <div class="arsenal-card-head">
+          <div class="tool-icon-shield">
+            <img src="assets/images/tools/kalilinux.png" alt="Kali Linux Logo" class="tool-brand-img" loading="lazy">
+          </div>
+          <span class="tool-serial">TOOL // 08</span>
+        </div>
+        <h4 class="tool-title">Kali Linux</h4>
+        <p class="tool-summary">Premier offensive security distribution equipped with full toolchains for red teaming and vulnerability discovery.</p>
+        <div class="card-footer-tag">OFFENSIVE SECURITY</div>
+      </div>
+
+      <!-- Python -->
+      <div class="arsenal-card hud-box tilt-card" data-animate>
+        <div class="hud-corner c-tl"></div><div class="hud-corner c-tr"></div>
+        <div class="hud-corner c-bl"></div><div class="hud-corner c-br"></div>
+        <div class="arsenal-card-head">
+          <div class="tool-icon-shield">
+            <img src="assets/images/tools/python.png" alt="Python Logo" class="tool-brand-img" loading="lazy">
+          </div>
+          <span class="tool-serial">TOOL // 09</span>
+        </div>
+        <h4 class="tool-title">Python Automation</h4>
+        <p class="tool-summary">Custom defensive scripts, log parsers, forensic watermark embedding, and automated forensic PDF generators.</p>
+        <div class="card-footer-tag">DEV &amp; AUTOMATION</div>
+      </div>
+
+      <!-- Metasploit -->
+      <div class="arsenal-card hud-box tilt-card" data-animate>
+        <div class="hud-corner c-tl"></div><div class="hud-corner c-tr"></div>
+        <div class="hud-corner c-bl"></div><div class="hud-corner c-br"></div>
+        <div class="arsenal-card-head">
+          <div class="tool-icon-shield">
+            <img src="assets/images/tools/metasploit.png" alt="Metasploit Logo" class="tool-brand-img" loading="lazy">
+          </div>
+          <span class="tool-serial">TOOL // 10</span>
+        </div>
+        <h4 class="tool-title">Metasploit</h4>
+        <p class="tool-summary">Exploit verification, payload simulation, post-exploitation assessment, and defense validation testing.</p>
+        <div class="card-footer-tag">EXPLOIT SIMULATION</div>
+      </div>
+
+      <!-- VirusTotal -->
+      <div class="arsenal-card hud-box tilt-card" data-animate>
+        <div class="hud-corner c-tl"></div><div class="hud-corner c-tr"></div>
+        <div class="hud-corner c-bl"></div><div class="hud-corner c-br"></div>
+        <div class="arsenal-card-head">
+          <div class="tool-icon-shield">
+            <img src="assets/images/tools/virustotal.png" alt="VirusTotal API Logo" class="tool-brand-img" loading="lazy">
+          </div>
+          <span class="tool-serial">TOOL // 11</span>
+        </div>
+        <h4 class="tool-title">VirusTotal API</h4>
+        <p class="tool-summary">Multi-engine malware intelligence aggregating detection results across 70+ industry-standard antivirus engines.</p>
+        <div class="card-footer-tag">THREAT INTELLIGENCE</div>
+      </div>
+
+      <!-- Hashcat -->
+      <div class="arsenal-card hud-box tilt-card" data-animate>
+        <div class="hud-corner c-tl"></div><div class="hud-corner c-tr"></div>
+        <div class="hud-corner c-bl"></div><div class="hud-corner c-br"></div>
+        <div class="arsenal-card-head">
+          <div class="tool-icon-shield">
+            <img src="assets/images/tools/hashcat.png" alt="Hashcat Logo" class="tool-brand-img" loading="lazy">
+          </div>
+          <span class="tool-serial">TOOL // 12</span>
+        </div>
+        <h4 class="tool-title">Hashcat</h4>
+        <p class="tool-summary">High-speed GPU-accelerated hash cracking, password audit verification, and key recovery operations.</p>
+        <div class="card-footer-tag">CRYPTANALYSIS</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 05 // FEATURED OPERATIONS (PROJECTS) ==================== -->
+  <section id="projects" class="cyber-section" data-animate>
+    <div class="section-decor-line"></div>
+    <div class="section-header-block">
+      <div>
+        <div class="section-tag-hud"><span class="tag-glyph">05 //</span> DEPLOYED SYSTEMS</div>
+        <h2 class="cyber-heading">FEATURED OPERATIONS</h2>
+      </div>
+      <div class="hud-inline-note">VERIFIED CODEBASES // 4 LIVE REPOSITORIES</div>
+    </div>
+
+    <!-- 3D CYBER WHEEL CONTROLLER & MODE SWITCHER -->
+    <div class="projects-hud-ctrl-bar">
+      <div class="wheel-mode-switcher">
+        <button class="ctrl-mode-btn active" id="btn-show-wheel" data-mode="wheel">
+          <span class="btn-glyph">&#9678;</span> 3D ROTARY WHEEL
+        </button>
+        <button class="ctrl-mode-btn" id="btn-show-arrange" data-mode="arrange">
+          <span class="btn-glyph">&#9783;</span> ARRANGE TO CORRESPONDING LOCATION
+        </button>
+      </div>
+
+      <div class="wheel-action-tools">
+        <button class="wheel-nav-arrow" id="wheel-prev-btn" aria-label="Previous Project">&larr; PREV</button>
+        <div class="wheel-dots-nav" id="wheel-dots">
+          <span class="wheel-dot active" data-index="0" title="PhishGuard">01</span>
+          <span class="wheel-dot" data-index="1" title="FileSentinel">02</span>
+          <span class="wheel-dot" data-index="2" title="CipherTrace">03</span>
+          <span class="wheel-dot" data-index="3" title="Cyber Toolkit">04</span>
+        </div>
+        <button class="wheel-nav-arrow" id="wheel-next-btn" aria-label="Next Project">NEXT &rarr;</button>
+      </div>
+    </div>
+
+    <!-- 3D ROTARY ANIMATION WHEEL STAGE -->
+    <div class="project-wheel-chamber" id="project-wheel-chamber">
+      <div class="wheel-rotary-ring" id="wheel-rotary-ring">
+        <!-- Wheel Card 01: PhishGuard -->
+        <div class="wheel-card-slot" data-index="0">
+          <div class="wheel-card hud-box">
+            <div class="hud-corner c-tl"></div><div class="hud-corner c-tr"></div>
+            <div class="hud-corner c-bl"></div><div class="hud-corner c-br"></div>
+            <div class="wheel-card-topbar">
+              <span class="wheel-card-code">OP // 01</span>
+              <span class="wheel-card-badge live">DECEPTION INTEL</span>
+            </div>
+            <div class="wheel-card-imgwrap">
+              <img src="assets/images/phishguard-preview.png" alt="PhishGuard AI Preview" class="wheel-img" loading="lazy">
+              <div class="wheel-card-glimmer"></div>
+            </div>
+            <div class="wheel-card-meta">
+              <h4 class="wheel-card-title">PhishGuard</h4>
+              <p class="wheel-card-desc">Dynamic honeypot deception framework tracing adversary credential harvesting in real-time.</p>
+              <div class="wheel-card-tags">
+                <span class="w-tag">Honeypots</span>
+                <span class="w-tag">MITRE ATT&amp;CK</span>
+                <span class="w-tag">Threat Intel</span>
+              </div>
+              <div class="wheel-card-actions">
+                <a href="https://github.com/suryakirants/phishguard" target="_blank" rel="noopener" class="wheel-btn-github">
+                  <span>GITHUB &rarr;</span>
+                </a>
+                <button class="wheel-btn-arrange" data-target="op-card-0">
+                  <span>ARRANGE HERE &darr;</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Wheel Card 02: FileSentinel -->
+        <div class="wheel-card-slot" data-index="1">
+          <div class="wheel-card hud-box">
+            <div class="hud-corner c-tl"></div><div class="hud-corner c-tr"></div>
+            <div class="hud-corner c-bl"></div><div class="hud-corner c-br"></div>
+            <div class="wheel-card-topbar">
+              <span class="wheel-card-code">OP // 02</span>
+              <span class="wheel-card-badge live">FORENSIC INTEGRITY</span>
+            </div>
+            <div class="wheel-card-imgwrap">
+              <img src="assets/images/filesentinel-preview.jpg" alt="FileSentinel Preview" class="wheel-img" loading="lazy">
+              <div class="wheel-card-glimmer"></div>
+            </div>
+            <div class="wheel-card-meta">
+              <h4 class="wheel-card-title">FileSentinel</h4>
+              <p class="wheel-card-desc">Real-time file integrity guardian with SHA-256 baseline monitoring and tamper-evident PDF audits.</p>
+              <div class="wheel-card-tags">
+                <span class="w-tag">FIM Watchdog</span>
+                <span class="w-tag">SHA-256</span>
+                <span class="w-tag">Watermarking</span>
+              </div>
+              <div class="wheel-card-actions">
+                <a href="https://github.com/suryakirants/filesentinel" target="_blank" rel="noopener" class="wheel-btn-github">
+                  <span>GITHUB &rarr;</span>
+                </a>
+                <button class="wheel-btn-arrange" data-target="op-card-1">
+                  <span>ARRANGE HERE &darr;</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Wheel Card 03: CipherTrace -->
+        <div class="wheel-card-slot" data-index="2">
+          <div class="wheel-card hud-box">
+            <div class="hud-corner c-tl"></div><div class="hud-corner c-tr"></div>
+            <div class="hud-corner c-bl"></div><div class="hud-corner c-br"></div>
+            <div class="wheel-card-topbar">
+              <span class="wheel-card-code">OP // 03</span>
+              <span class="wheel-card-badge live">THREAT DISCOVERY</span>
+            </div>
+            <div class="wheel-card-imgwrap">
+              <img src="assets/images/ciphertrace-preview.png" alt="CipherTrace Preview" class="wheel-img" loading="lazy">
+              <div class="wheel-card-glimmer"></div>
+            </div>
+            <div class="wheel-card-meta">
+              <h4 class="wheel-card-title">CipherTrace</h4>
+              <p class="wheel-card-desc">Automated static malware triage platform querying 70+ engines via VirusTotal with hash verification.</p>
+              <div class="wheel-card-tags">
+                <span class="w-tag">VirusTotal API</span>
+                <span class="w-tag">Entropy Triage</span>
+                <span class="w-tag">Crypto Hashing</span>
+              </div>
+              <div class="wheel-card-actions">
+                <a href="https://github.com/suryakirants/ciphertrace" target="_blank" rel="noopener" class="wheel-btn-github">
+                  <span>GITHUB &rarr;</span>
+                </a>
+                <button class="wheel-btn-arrange" data-target="op-card-2">
+                  <span>ARRANGE HERE &darr;</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Wheel Card 04: Cyber Toolkit -->
+        <div class="wheel-card-slot" data-index="3">
+          <div class="wheel-card hud-box">
+            <div class="hud-corner c-tl"></div><div class="hud-corner c-tr"></div>
+            <div class="hud-corner c-bl"></div><div class="hud-corner c-br"></div>
+            <div class="wheel-card-topbar">
+              <span class="wheel-card-code">OP // 04</span>
+              <span class="wheel-card-badge live">SECURITY AUTOMATION</span>
+            </div>
+            <div class="wheel-card-imgwrap">
+              <img src="assets/images/cybertoolkit-preview.png" alt="Cyber Toolkit Preview" class="wheel-img" loading="lazy">
+              <div class="wheel-card-glimmer"></div>
+            </div>
+            <div class="wheel-card-meta">
+              <h4 class="wheel-card-title">Cyber Toolkit</h4>
+              <p class="wheel-card-desc">Unified multi-module offensive & defensive toolkit with Nmap scripting, hash cracking, and DNS triage.</p>
+              <div class="wheel-card-tags">
+                <span class="w-tag">Nmap Recon</span>
+                <span class="w-tag">Web Fuzzing</span>
+                <span class="w-tag">Hash Cracker</span>
+              </div>
+              <div class="wheel-card-actions">
+                <a href="https://github.com/suryakirants/cybertoolkit" target="_blank" rel="noopener" class="wheel-btn-github">
+                  <span>GITHUB &rarr;</span>
+                </a>
+                <button class="wheel-btn-arrange" data-target="op-card-3">
+                  <span>ARRANGE HERE &darr;</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Holographic Wheel Base Ring & Axis -->
+      <div class="wheel-hologram-pedestal">
+        <div class="holo-orbit-ring ring-outer"></div>
+        <div class="holo-orbit-ring ring-mid"></div>
+        <div class="holo-radar-sweep"></div>
+        <div class="holo-core-glow"></div>
+        <span class="holo-axis-label">[ ROTARY 3D WHEEL // DRAG OR CLICK ARROWS TO ROTATE ]</span>
+      </div>
+    </div>
+
+    <!-- CORRESPONDING DETAILED OPERATIONS STREAM (ARRANGED LOCATION) -->
+    <div class="operations-stream" id="operations-stream">
+
+      <!-- OP 1: PhishGuard -->
+      <div class="operation-row" id="op-card-0" data-animate>
+        <div class="op-preview-col hud-box tilt-card">
+          <div class="hud-corner c-tl"></div><div class="hud-corner c-tr"></div>
+          <div class="hud-corner c-bl"></div><div class="hud-corner c-br"></div>
+          <div class="op-window-bar">
+            <div class="term-dots"><span></span><span></span><span></span></div>
+            <div class="op-window-title">phishguard-core // decoy_controller.py</div>
+            <div class="op-live-tag">SECURE-FEED</div>
+          </div>
+          <div class="op-img-wrap">
+            <div class="op-laser-sweep"></div>
+            <div class="op-grid-mesh"></div>
+            <img src="assets/images/phishguard-preview.png" alt="PhishGuard Live Honeypot Dashboard" class="op-screenshot" loading="lazy">
+            <div class="op-overlay-prompt">
+              <a href="https://github.com/suryakirants/phishguard" target="_blank" rel="noopener" class="btn-cyber-primary">
+                <span>INSPECT REPO ON GITHUB &rarr;</span>
+              </a>
+            </div>
+          </div>
+          <div class="op-hud-status-strip">
+            <span class="strip-code">SYS-01 // PHISHGUARD</span>
+            <span class="strip-node"><span class="strip-dot"></span>FEED LIVE</span>
+          </div>
+        </div>
+
+        <div class="op-info-col">
+          <div class="op-code-tag">OPERATION 01 // DECEPTION &amp; INTEL</div>
+          <h3 class="op-headline">PhishGuard</h3>
+          <p class="op-narrative">
+            Advanced phishing deception framework utilizing dynamic honeypot traps and synthetic decoy credentials to lure, trace, and profile adversary credential harvesting campaigns. Maps live threat telemetry against MITRE ATT&CK TTPs in real time.
+          </p>
+          <div class="op-tag-cloud">
+            <span class="op-tag">Login Traps</span>
+            <span class="op-tag">Honeypot Decoys</span>
+            <span class="op-tag">Adversary Profiling</span>
+            <span class="op-tag">MITRE ATT&amp;CK</span>
+            <span class="op-tag">Threat Intel</span>
+          </div>
+          <div class="op-action-wrap">
+            <a href="https://github.com/suryakirants/phishguard" target="_blank" rel="noopener" class="btn-github-link">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+              <span>github.com/suryakirants/phishguard</span>
+              <span class="link-arrow">&rarr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- OP 2: FileSentinel -->
+      <div class="operation-row reverse" id="op-card-1" data-animate>
+        <div class="op-preview-col hud-box tilt-card">
+          <div class="hud-corner c-tl"></div><div class="hud-corner c-tr"></div>
+          <div class="hud-corner c-bl"></div><div class="hud-corner c-br"></div>
+          <div class="op-window-bar">
+            <div class="term-dots"><span></span><span></span><span></span></div>
+            <div class="op-window-title">filesentinel-daemon // monitor_service.py</div>
+            <div class="op-live-tag">LIVE-WEBSOCKET</div>
+          </div>
+          <div class="op-img-wrap">
+            <div class="op-laser-sweep"></div>
+            <div class="op-grid-mesh"></div>
+            <img src="assets/images/filesentinel-preview.jpg" alt="FileSentinel Real-Time Log and Leak Monitor" class="op-screenshot" loading="lazy">
+            <div class="op-overlay-prompt">
+              <a href="https://github.com/suryakirants/filesentinel" target="_blank" rel="noopener" class="btn-cyber-primary">
+                <span>INSPECT REPO ON GITHUB &rarr;</span>
+              </a>
+            </div>
+          </div>
+          <div class="op-hud-status-strip">
+            <span class="strip-code">SYS-02 // FILESENTINEL</span>
+            <span class="strip-node"><span class="strip-dot"></span>STREAM ACTIVE</span>
+          </div>
+        </div>
+
+        <div class="op-info-col">
+          <div class="op-code-tag">OPERATION 02 // INSIDER LEAK PREVENT</div>
+          <h3 class="op-headline">FileSentinel</h3>
+          <p class="op-narrative">
+            Enterprise file integrity and insider threat detection engine streaming live security telemetry via WebSockets. Incorporates invisible document watermarking to trace leaked intellectual property back to the exact unauthorized account.
+          </p>
+          <div class="op-tag-cloud">
+            <span class="op-tag">Access Control</span>
+            <span class="op-tag">Forensic Watermarking</span>
+            <span class="op-tag">WebSocket Streaming</span>
+            <span class="op-tag">Leak Attribution</span>
+            <span class="op-tag">Audit Trails</span>
+          </div>
+          <div class="op-action-wrap">
+            <a href="https://github.com/suryakirants/filesentinel" target="_blank" rel="noopener" class="btn-github-link">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+              <span>github.com/suryakirants/filesentinel</span>
+              <span class="link-arrow">&rarr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- OP 3: CipherTrace -->
+      <div class="operation-row" id="op-card-2" data-animate>
+        <div class="op-preview-col hud-box tilt-card">
+          <div class="hud-corner c-tl"></div><div class="hud-corner c-tr"></div>
+          <div class="hud-corner c-bl"></div><div class="hud-corner c-br"></div>
+          <div class="op-window-bar">
+            <div class="term-dots"><span></span><span></span><span></span></div>
+            <div class="op-window-title">ciphertrace-analyzer // scanner_engine.py</div>
+            <div class="op-live-tag">MALWARE-SANDBOX</div>
+          </div>
+          <div class="op-img-wrap">
+            <div class="op-laser-sweep"></div>
+            <div class="op-grid-mesh"></div>
+            <img src="assets/images/ciphertrace-preview.png" alt="CipherTrace Malware Detection Platform" class="op-screenshot" loading="lazy">
+            <div class="op-overlay-prompt">
+              <a href="https://github.com/suryakirants/ciphertrace" target="_blank" rel="noopener" class="btn-cyber-primary">
+                <span>INSPECT REPO ON GITHUB &rarr;</span>
+              </a>
+            </div>
+          </div>
+          <div class="op-hud-status-strip">
+            <span class="strip-code">SYS-03 // CIPHERTRACE</span>
+            <span class="strip-node"><span class="strip-dot"></span>SANDBOX ONLINE</span>
+          </div>
+        </div>
+
+        <div class="op-info-col">
+          <div class="op-code-tag">OPERATION 03 // FORENSICS &amp; CRYPTO</div>
+          <h3 class="op-headline">CipherTrace</h3>
+          <p class="op-narrative">
+            Automated forensic file investigation utility executing multi-algorithm cryptographic verification (MD5, SHA-256), static binary malware triage with VirusTotal API scoring, file encryption/decryption, and automated forensic PDF reports.
+          </p>
+          <div class="op-tag-cloud">
+            <span class="op-tag">Multi-Hash Analysis</span>
+            <span class="op-tag">VirusTotal API</span>
+            <span class="op-tag">Static Analysis</span>
+            <span class="op-tag">AES-256 Crypto</span>
+            <span class="op-tag">PDF Case Reports</span>
+          </div>
+          <div class="op-action-wrap">
+            <a href="https://github.com/suryakirants/ciphertrace" target="_blank" rel="noopener" class="btn-github-link">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+              <span>github.com/suryakirants/ciphertrace</span>
+              <span class="link-arrow">&rarr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- OP 4: Cyber Toolkit -->
+      <div class="operation-row reverse" id="op-card-3" data-animate>
+        <div class="op-preview-col hud-box tilt-card">
+          <div class="hud-corner c-tl"></div><div class="hud-corner c-tr"></div>
+          <div class="hud-corner c-bl"></div><div class="hud-corner c-br"></div>
+          <div class="op-window-bar">
+            <div class="term-dots"><span></span><span></span><span></span></div>
+            <div class="op-window-title">cybersuite-hub // recon_orchestrator.py</div>
+            <div class="op-live-tag">ACTIVE-RECON</div>
+          </div>
+          <div class="op-img-wrap">
+            <div class="op-laser-sweep"></div>
+            <div class="op-grid-mesh"></div>
+            <img src="assets/images/cybertoolkit-preview.png" alt="Cyber Toolkit Unified Security Suite" class="op-screenshot" loading="lazy">
+            <div class="op-overlay-prompt">
+              <a href="https://github.com/suryakirants/cybertoolkit" target="_blank" rel="noopener" class="btn-cyber-primary">
+                <span>INSPECT REPO ON GITHUB &rarr;</span>
+              </a>
+            </div>
+          </div>
+          <div class="op-hud-status-strip">
+            <span class="strip-code">SYS-04 // CYBERSUITE</span>
+            <span class="strip-node"><span class="strip-dot"></span>RECON ACTIVE</span>
+          </div>
+        </div>
+
+        <div class="op-info-col">
+          <div class="op-code-tag">OPERATION 04 // RECON &amp; VISUALS</div>
+          <h3 class="op-headline">Cyber Toolkit</h3>
+          <p class="op-narrative">
+            Unified offensive and defensive intelligence cockpit uniting Nmap port discovery, Dirsearch endpoint enumeration, and cryptographic hashing into an interactive HUD with AI-driven risk scoring and topology export.
+          </p>
+          <div class="op-tag-cloud">
+            <span class="op-tag">Nmap Engine</span>
+            <span class="op-tag">Dirsearch Integration</span>
+            <span class="op-tag">AI Risk Insights</span>
+            <span class="op-tag">Network Topology</span>
+            <span class="op-tag">Executive Reports</span>
+          </div>
+          <div class="op-action-wrap">
+            <a href="https://github.com/suryakirants/cybertoolkit" target="_blank" rel="noopener" class="btn-github-link">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+              <span>github.com/suryakirants/cybertoolkit</span>
+              <span class="link-arrow">&rarr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== 06 // HIGH-TECH CONTACT FOOTER ==================== -->
+  <footer id="contact" class="cyber-footer" data-animate>
+    <div class="section-decor-line"></div>
+    <div class="footer-hud-banner">
+      <div class="section-tag-hud"><span class="tag-glyph">06 //</span> TRANSMISSION LINK</div>
+      <div class="hud-inline-note">STATUS: READY TO FORTIFY INFRASTRUCTURE</div>
+    </div>
+
+    <div class="footer-cta-block">
+      <h2 class="footer-cta-heading">
+        READY TO SECURE YOUR <span class="cyan-glow">NETWORK?</span>
+      </h2>
+      <p class="footer-cta-sub">
+        Available for SOC analyst positions, digital forensics investigations, security engineering, and incident response teams.
+      </p>
+    </div>
+
+    <div class="footer-action-cluster">
+      <a href="mailto:suryakirants3157@gmail.com" class="btn-hud-primary magnetic-btn">
+        <span class="btn-corner-cut"></span>
+        <span class="btn-content">INITIATE ENCRYPTED EMAIL &rarr;</span>
+      </a>
+      <button class="btn-hud-secondary magnetic-btn" id="copy-email-btn">
+        <span class="btn-corner-cut"></span>
+        <span class="btn-content">COPY EMAIL ADDRESS</span>
+      </button>
+      <a href="assets/Suryakiran_TS_Resume.pdf" download class="btn-hud-secondary magnetic-btn">
+        <span class="btn-corner-cut"></span>
+        <span class="btn-content">DOWNLOAD DOSSIER (PDF)</span>
+      </a>
+    </div>
+
+    <!-- PROMINENT HIGH-IMPACT GITHUB & LINKEDIN PORTALS -->
+    <div class="footer-mega-socials">
+      <a href="https://github.com/suryakirants" target="_blank" rel="noopener" class="mega-social-card github-mega">
+        <div class="mega-icon-box">
+          <svg viewBox="0 0 24 24" class="svg-mega-brand"><path fill="currentColor" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        </div>
+        <div class="mega-body">
+          <span class="mega-tag">SOURCE CODE INTELLIGENCE</span>
+          <h4 class="mega-title">GITHUB REPOSITORIES</h4>
+          <span class="mega-url">github.com/suryakirants</span>
+        </div>
+        <span class="mega-arrow">&rarr;</span>
+      </a>
+
+      <a href="https://linkedin.com" target="_blank" rel="noopener" class="mega-social-card linkedin-mega">
+        <div class="mega-icon-box">
+          <svg viewBox="0 0 24 24" class="svg-mega-brand"><path fill="currentColor" d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.09a1.45 1.45 0 0 0-1.45 1.45 1.45 1.45 0 0 0 1.45 1.45 1.45 1.45 0 0 0 1.45-1.45 1.45 1.45 0 0 0-1.45-1.45Z"/></svg>
+        </div>
+        <div class="mega-body">
+          <span class="mega-tag">PROFESSIONAL NETWORK</span>
+          <h4 class="mega-title">LINKEDIN DOSSIER</h4>
+          <span class="mega-url">linkedin.com/in/suryakirants</span>
+        </div>
+        <span class="mega-arrow">&rarr;</span>
+      </a>
+    </div>
+
+    <div class="footer-base-panel">
+      <div class="copyright-meta">
+        <span class="copy-year">&copy; 2026 SURYAKIRAN T S</span>
+        <span class="copy-loc">ERNAKULAM, KERALA // ALL SYSTEMS SECURE</span>
+      </div>
+      <div class="social-trans-links">
+        <a href="https://github.com/suryakirants" target="_blank" rel="noopener" class="soc-link">
+          <span class="soc-bracket">[</span> GITHUB <span class="soc-bracket">]</span>
+        </a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener" class="soc-link">
+          <span class="soc-bracket">[</span> LINKEDIN <span class="soc-bracket">]</span>
+        </a>
+        <a href="mailto:suryakirants3157@gmail.com" class="soc-link">
+          <span class="soc-bracket">[</span> SURYAKIRANTS3157@GMAIL.COM <span class="soc-bracket">]</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== UI OVERLAYS ==================== -->
+  <button class="back-to-top" id="back-to-top" aria-label="Return to top of page">
+    <span class="btt-arrow">&#9650;</span>
+    <span class="btt-text">TOP</span>
+  </button>
+
+  <div id="toast" class="hud-toast">
+    <div class="toast-indicator"></div>
+    <div class="toast-body">
+      <span class="toast-title">[SUCCESS] CLIPBOARD BUFFER UPDATED</span>
+      <span class="toast-val">suryakirants3157@gmail.com</span>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

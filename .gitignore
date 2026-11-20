@@ -1,0 +1,12 @@
+# OS & Editor artifacts
+.DS_Store
+Thumbs.db
+ehthumbs.db
+[Nn]on[Dd]esktop.ini
+.vscode/
+.idea/
+*.suo
+*.user
+*.swp
+*~
+*.log
