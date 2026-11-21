@@ -720,7 +720,12 @@ header#main-header.scrolled {
   aspect-ratio: 682 / 1024;
   display: block;
   filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 35px rgba(0, 240, 255, 0.3));
-  transition: transform 0.4s var(--ease-cyber), filter 0.4s ease;
+  transition: transform 0.4s var(--ease-cyber), filter 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
+}
+
+.hero-hd-photo.assembled {
+  opacity: 1;
 }
 
 .hud-photo-frame:hover .hero-hd-photo {
@@ -833,7 +838,7 @@ header#main-header.scrolled {
 
 .tele-item .t-dim { color: var(--cyan); opacity: 0.8; }
 .hero-hud-bottom {
-  max-width: min(54vw, 680px);
+  max-width: min(56vw, 760px);
   position: relative;
   z-index: 5;
   pointer-events: auto;
@@ -861,7 +866,7 @@ header#main-header.scrolled {
   padding: 4px 0 8px 0;
   margin-bottom: 8px;
   position: relative;
-  max-width: min(54vw, 680px);
+  max-width: min(56vw, 760px);
   overflow: visible;
 }
 
@@ -872,16 +877,19 @@ header#main-header.scrolled {
   -webkit-text-fill-color: transparent;
   padding-bottom: 4px;
   line-height: 1.05;
+  overflow: visible;
+  width: max-content;
+  max-width: 100%;
 }
 
 .title-line-1 {
-  font-size: clamp(2.2rem, 5.2vw, 5.4rem);
+  font-size: clamp(2rem, 3.8vw, 4.2rem);
   white-space: nowrap;
   letter-spacing: -0.02em;
 }
 
 .title-line-2 {
-  font-size: clamp(2.2rem, 5.2vw, 5.4rem);
+  font-size: clamp(2rem, 3.8vw, 4.2rem);
   letter-spacing: 0.08em;
   white-space: nowrap;
 }

@@ -45,6 +45,11 @@
     if (typeof triggerParticleAssembly === "function") {
       triggerParticleAssembly();
     }
+    // Failsafe: ensures real photo is 100% visible after intro
+    setTimeout(() => {
+      const p = document.getElementById("hero-hd-photo");
+      if (p) p.classList.add("assembled");
+    }, 2400);
   }
 
   // Failsafe timer (Guaranteed never stuck, extended for cinematic pacing)
@@ -256,6 +261,12 @@
   let isAssembled = false;
   let assembleStartTime = 0;
   const ASSEMBLE_DURATION = 1900; // ms for photo shards to converge with cinematic grace
+  let shards = [];
+  let heroImgRef = null;
+  let imgRenderParams = { offsetX: 0, offsetY: 0, drawW: 0, drawH: 0 };
+  const mouse = { x: -9999, y: -9999, radius: 125 };
+  let targetScrollScatter = 0;
+  let smoothedScrollScatter = 0;
 
   triggerParticleAssembly = function () {
     if (isAssembling || isAssembled) return;
@@ -279,13 +290,6 @@
     const heroSec = document.getElementById("hero");
     let pWidth = (particleCanvas.width = heroSec ? heroSec.clientWidth : window.innerWidth);
     let pHeight = (particleCanvas.height = heroSec ? Math.max(heroSec.clientHeight, window.innerHeight) : window.innerHeight);
-
-    let shards = [];
-    let heroImgRef = null;
-    let imgRenderParams = { offsetX: 0, offsetY: 0, drawW: 0, drawH: 0 };
-    const mouse = { x: -9999, y: -9999, radius: 125 };
-    let targetScrollScatter = 0;
-    let smoothedScrollScatter = 0;
 
     window.addEventListener("resize", () => {
       const hSec = document.getElementById("hero");
@@ -401,11 +405,10 @@
     function buildPhotoShards() {
       shards = [];
       const img = new Image();
-      img.src = heroHdPhoto.src;
 
-      img.onload = () => {
+      function initShards() {
         heroImgRef = img;
-        const heroRect = heroHdPhoto.getBoundingClientRect();
+        const heroRect = heroHdPhoto ? heroHdPhoto.getBoundingClientRect() : null;
         const canvasRect = particleCanvas.getBoundingClientRect();
 
         // 100% natural aspect ratio of the source photo - strictly preserved!
@@ -440,11 +443,10 @@
           offsetY = 160;
         }
 
-        // Exact DOM sync with .hud-photo-frame if layout is active (ensures 100% precision across browser zoom)
+        // Exact DOM sync with .hud-photo-frame if layout is active (ensures 100% precision across desktop & mobile)
         const frameEl = document.getElementById("hud-photo-frame");
         if (frameEl) {
           const frameRect = frameEl.getBoundingClientRect();
-          const canvasRect = particleCanvas.getBoundingClientRect();
           if (frameRect.width > 50 && frameRect.height > 50) {
             offsetX = Math.floor(frameRect.left - canvasRect.left);
             offsetY = Math.floor(frameRect.top - canvasRect.top);
@@ -525,7 +527,13 @@
           assembleStartTime = performance.now();
           assembleProgress = 0;
         }
-      };
+      }
+
+      img.onload = initShards;
+      img.src = heroHdPhoto.src;
+      if (img.complete && img.naturalWidth > 0) {
+        initShards();
+      }
     }
 
     buildPhotoShards();
@@ -560,21 +568,27 @@
         if (t >= 1) {
           assembleProgress = 1;
           isAssembled = true;
+          if (heroHdPhoto) heroHdPhoto.classList.add("assembled");
         }
       }
 
       // Check state:
       const isAtRest = assembleProgress >= 1 && smoothedScrollScatter === 0;
 
-      if (isAtRest && heroImgRef) {
+      if (isAtRest) {
+        if (heroHdPhoto) {
+          heroHdPhoto.classList.add("assembled");
+          heroHdPhoto.style.opacity = "1";
+        }
         // Photo is fully assembled and at rest at top of page
         const mouseNearPhoto = 
+          heroImgRef &&
           mouse.x >= imgRenderParams.offsetX - 40 &&
           mouse.x <= imgRenderParams.offsetX + imgRenderParams.drawW + 40 &&
           mouse.y >= imgRenderParams.offsetY - 40 &&
           mouse.y <= imgRenderParams.offsetY + imgRenderParams.drawH + 40;
 
-        if (!mouseNearPhoto) {
+        if (!mouseNearPhoto && heroImgRef) {
           // 100% Solid, razor-sharp, photorealistic full render - fully formed! (0.01ms speed)
           pCtx.drawImage(
             heroImgRef,
@@ -612,6 +626,9 @@
         }
       } else {
         // Scrolling down: photo shatters into micro-squares with silky smooth damped dispersion
+        if (heroHdPhoto) {
+          heroHdPhoto.style.opacity = Math.max(0, 1 - smoothedScrollScatter * 2.5);
+        }
         for (let i = 0; i < shards.length; i++) {
           shards[i].update(assembleProgress, smoothedScrollScatter, mouse);
           shards[i].draw(pCtx);
