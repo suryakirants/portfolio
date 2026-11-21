@@ -398,28 +398,37 @@
         // 100% natural aspect ratio of the source photo - strictly preserved!
         const naturalRatio = img.width / img.height; // Exactly 682 / 1024 = 0.666015625
 
-        // Calculate target height (enlarged overall presence)
-        let targetH = Math.min(pHeight * 0.86, 850);
-        let targetW = Math.round(targetH * naturalRatio);
+        let targetH;
+        let targetW;
+        let offsetX;
+        let offsetY;
 
-        // Keep within viewport boundary while strictly preserving aspect ratio
-        const maxAllowedW = pWidth > 960 ? Math.min(pWidth * 0.46, 580) : Math.min(pWidth * 0.85, 450);
-        if (targetW > maxAllowedW) {
-          targetW = Math.round(maxAllowedW);
-          targetH = Math.round(targetW / naturalRatio);
+        if (pWidth > 960) {
+          // Desktop: enlarged photo on the right side
+          targetH = Math.min(pHeight * 0.86, 850);
+          targetW = Math.round(targetH * naturalRatio);
+          const maxAllowedW = Math.min(pWidth * 0.46, 580);
+          if (targetW > maxAllowedW) {
+            targetW = Math.round(maxAllowedW);
+            targetH = Math.round(targetW / naturalRatio);
+          }
+          offsetX = Math.floor(pWidth - targetW - Math.max(pWidth * 0.05, 36));
+          offsetY = Math.floor((pHeight - targetH) / 2);
+        } else {
+          // Mobile & Tablet: matches .hud-photo-frame with height: min(44vh, 340px)
+          targetH = Math.min(pHeight * 0.44, 340);
+          targetW = Math.round(targetH * naturalRatio);
+          const maxAllowedW = Math.min(pWidth * 0.75, 270);
+          if (targetW > maxAllowedW) {
+            targetW = Math.round(maxAllowedW);
+            targetH = Math.round(targetW / naturalRatio);
+          }
+          offsetX = Math.floor((pWidth - targetW) / 2);
+          offsetY = 85;
         }
 
         const drawW = targetW;
         const drawH = targetH;
-
-        // Position: right side on desktop, center on mobile
-        let offsetX, offsetY;
-        if (pWidth > 960) {
-          offsetX = Math.floor(pWidth - drawW - Math.max(pWidth * 0.05, 36));
-        } else {
-          offsetX = Math.floor((pWidth - drawW) / 2);
-        }
-        offsetY = Math.floor((pHeight - drawH) / 2);
 
         imgRenderParams = { offsetX, offsetY, drawW, drawH };
         const centerRefX = offsetX + drawW / 2;

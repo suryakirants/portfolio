@@ -1261,20 +1261,20 @@ header#main-header.scrolled {
 }
 
 .node-head {
-  top: 14%;
-  right: -30px;
+  top: 12%;
+  right: 14px;
   transform: translateZ(65px);
 }
 
 .node-chest {
   top: 45%;
-  left: -35px;
+  left: 14px;
   transform: translateZ(65px);
 }
 
 .node-arm {
-  bottom: 20%;
-  right: -20px;
+  bottom: 16%;
+  right: 14px;
   transform: translateZ(65px);
 }
 
@@ -2287,64 +2287,6 @@ header#main-header.scrolled {
 .arsenal-grid [data-animate]:nth-child(11) { transition-delay: 0.42s; }
 .arsenal-grid [data-animate]:nth-child(12) { transition-delay: 0.46s; }
 
-/* ==================== RESPONSIVE MEDIA QUERIES ==================== */
-@media (max-width: 1200px) {
-  .credentials-grid { grid-template-columns: repeat(2, 1fr); }
-  .arsenal-grid { grid-template-columns: repeat(3, 1fr); }
-  .dossier-interactive-grid { grid-template-columns: 1fr; }
-  .hero-photo-stage { padding-right: 4vw; }
-}
-
-@media (max-width: 960px) {
-  .operation-row,
-  .operation-row.reverse {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-  .operation-row.reverse .op-preview-col { order: 0; }
-  .desktop-nav { display: none; }
-  .hamburger-menu { display: flex; }
-  .arsenal-grid { grid-template-columns: repeat(2, 1fr); }
-  .custom-cursor,
-  .custom-cursor-dot { display: none !important; }
-  body { cursor: auto; }
-  .btn-hud-resume,
-  .btn-cyber-mini,
-  .accordion-trigger,
-  .btn-hud-primary,
-  .btn-hud-secondary,
-  .back-to-top,
-  .btn-cyber-primary,
-  .btn-dossier-filter {
-    cursor: pointer;
-  }
-  .accordion-body { padding-left: 14px; }
-  .hero-photo-stage {
-    justify-content: center;
-    padding-right: 0;
-  }
-  .hud-photo-frame {
-    max-width: 82vw;
-  }
-  .hero-hd-photo {
-    max-height: 62vh;
-  }
-}
-
-@media (max-width: 640px) {
-  .credentials-grid { grid-template-columns: 1fr; }
-  .arsenal-grid { grid-template-columns: 1fr; }
-  .intel-metric-grid { grid-template-columns: 1fr; }
-  .hero-hud-top { flex-direction: column; align-items: flex-start; }
-  .hud-telemetry { text-align: left; }
-  .hero-action-bar { flex-direction: column; align-items: flex-start; }
-  .cyber-section { padding: 75px 5vw; }
-  .footer-action-cluster { flex-direction: column; align-items: stretch; }
-  .footer-action-cluster a,
-  .footer-action-cluster button { text-align: center; }
-  .hud-toast { left: 15px; right: 15px; }
-}
-
 /* ==================== PROMINENT SOCIALS & CYBER HUBS ==================== */
 .nav-social-cluster {
   display: flex;
@@ -2382,6 +2324,39 @@ header#main-header.scrolled {
   width: 15px;
   height: 15px;
   color: var(--cyan);
+}
+
+.mobile-nav-socials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.mobile-social-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  border-radius: 6px;
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.mobile-social-pill:hover,
+.mobile-social-pill:active {
+  background: var(--cyan);
+  color: #030810;
+  border-color: var(--cyan);
+  box-shadow: 0 0 16px var(--cyan);
 }
 
 .hero-social-prominent-bar {
@@ -2825,25 +2800,6 @@ header#main-header.scrolled {
   to { transform: rotate(0deg); }
 }
 
-@media (max-width: 960px) {
-  .project-wheel-chamber {
-    height: 520px;
-  }
-  .wheel-rotary-ring,
-  .wheel-card-slot {
-    width: 320px;
-    height: 440px;
-  }
-  .wheel-card-slot[data-index="0"] { transform: rotateY(0deg) translateZ(240px); }
-  .wheel-card-slot[data-index="1"] { transform: rotateY(90deg) translateZ(240px); }
-  .wheel-card-slot[data-index="2"] { transform: rotateY(180deg) translateZ(240px); }
-  .wheel-card-slot[data-index="3"] { transform: rotateY(270deg) translateZ(240px); }
-  .wheel-card-imgwrap { height: 160px; }
-  .wheel-hologram-pedestal { width: 380px; height: 380px; }
-  .ring-outer { width: 360px; height: 360px; }
-  .ring-mid { width: 280px; height: 280px; }
-}
-
 /* Footer Mega Socials */
 .footer-mega-socials {
   display: grid;
@@ -2955,8 +2911,553 @@ header#main-header.scrolled {
   box-shadow: 0 0 14px rgba(0, 240, 255, 0.25);
 }
 
-@media (max-width: 768px) {
+/* =====================================================================
+   MASTER RESPONSIVE SYSTEM (DESKTOP, LAPTOP, TABLET, MOBILE, RETINA)
+   ZERO OVERFLOW • PIXEL-PERFECT ALIGNMENT • SEAMLESS 60FPS EXPERIENCE
+===================================================================== */
+
+/* --- 1. Large Desktops & Ultrawide (1201px - 1440px+) --- */
+@media (min-width: 1201px) {
+  .hero-photo-stage {
+    align-items: flex-end;
+    padding-right: 5vw;
+  }
+}
+
+/* --- 2. Compact Desktops & Laptops (1041px - 1200px) --- */
+@media (max-width: 1200px) {
+  .credentials-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .arsenal-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .dossier-interactive-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-photo-stage {
+    padding-right: 3vw;
+  }
+  .desktop-nav {
+    gap: 16px;
+  }
+  .nav-link {
+    font-size: 0.72rem;
+  }
+  .nav-social-text {
+    display: none; /* Keeps navbar on a single clean line without wrapping */
+  }
+  .nav-social-btn {
+    padding: 6px 8px;
+  }
+}
+
+/* --- 3. Tablets & Small Laptops (769px - 1040px) --- */
+@media (max-width: 1040px) {
+  .desktop-nav {
+    display: none;
+  }
+  .hamburger-menu {
+    display: flex;
+  }
+  .cyber-section {
+    padding: 90px 5vw;
+  }
+  .hero-section {
+    padding: 100px 5vw 40px;
+    min-height: 100vh;
+  }
+  .hero-photo-stage {
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 85px;
+    padding-right: 0;
+  }
+  .hud-photo-frame {
+    height: min(44vh, 340px);
+    width: auto;
+    max-width: 75vw;
+  }
+  .hero-hd-photo {
+    max-height: 100%;
+    width: auto;
+  }
+  .photo-under-telemetry {
+    max-width: 90vw;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .hero-content-wrapper {
+    min-height: auto;
+    height: 100%;
+    justify-content: space-between;
+  }
+  .hero-hud-bottom {
+    margin-top: auto;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .hero-tagline {
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-align: center;
+  }
+  .hero-glitch-title {
+    font-size: clamp(2.4rem, 8vw, 4.4rem);
+    text-align: center;
+    word-break: break-word;
+  }
+  .hero-social-prominent-bar {
+    justify-content: center;
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .operation-row,
+  .operation-row.reverse {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .operation-row .op-preview-col,
+  .operation-row.reverse .op-preview-col {
+    order: 1;
+  }
+  .operation-row .op-info-col,
+  .operation-row.reverse .op-info-col {
+    order: 2;
+  }
+  .arsenal-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .custom-cursor,
+  .custom-cursor-dot {
+    display: none !important;
+  }
+  body {
+    cursor: auto;
+  }
+  .btn-hud-resume,
+  .btn-cyber-mini,
+  .accordion-trigger,
+  .btn-hud-primary,
+  .btn-hud-secondary,
+  .back-to-top,
+  .btn-cyber-primary,
+  .btn-dossier-filter {
+    cursor: pointer;
+  }
+  .accordion-body {
+    padding-left: 14px;
+  }
+  .project-wheel-chamber {
+    height: 520px;
+    overflow: hidden;
+  }
+  .wheel-rotary-ring,
+  .wheel-card-slot {
+    width: 320px;
+    height: 440px;
+  }
+  .wheel-card-slot[data-index="0"] { transform: rotateY(0deg) translateZ(240px); }
+  .wheel-card-slot[data-index="1"] { transform: rotateY(90deg) translateZ(240px); }
+  .wheel-card-slot[data-index="2"] { transform: rotateY(180deg) translateZ(240px); }
+  .wheel-card-slot[data-index="3"] { transform: rotateY(270deg) translateZ(240px); }
+  .wheel-card-imgwrap { height: 160px; }
+  .wheel-hologram-pedestal { width: 380px; height: 380px; }
+  .ring-outer { width: 360px; height: 360px; }
+  .ring-mid { width: 280px; height: 280px; }
   .footer-mega-socials {
     grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* --- 4. Mobile Landscape / Small Tablets (641px - 768px) --- */
+@media (max-width: 768px) {
+  .hero-hud-top {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .hud-status-badge {
+    text-align: center;
+    font-size: 0.68rem;
+  }
+  .dossier-holo-chamber {
+    height: 380px;
+  }
+  .dossier-profile-img {
+    max-height: 320px;
+  }
+  .stream-marquee-container {
+    padding: 24px 0;
+    gap: 12px;
+  }
+  .footer-action-cluster {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .footer-action-cluster a,
+  .footer-action-cluster button {
+    text-align: center;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* --- 5. Mobile Devices (481px - 640px) --- */
+@media (max-width: 640px) {
+  .cyber-section {
+    padding: 70px 5vw;
+  }
+  .credentials-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .arsenal-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .arsenal-card {
+    padding: 18px 14px;
+    min-height: 210px;
+  }
+  .tool-icon-shield {
+    height: 44px;
+    min-width: 44px;
+    padding: 4px 6px;
+  }
+  .tool-brand-img {
+    max-height: 28px;
+    max-width: 52px;
+  }
+  .tool-title {
+    font-size: 1rem;
+    margin-bottom: 4px;
+  }
+  .tool-summary {
+    font-size: 0.76rem;
+    line-height: 1.45;
+    margin-bottom: 12px;
+  }
+  .card-footer-tag {
+    font-size: 0.6rem;
+    padding: 3px 6px;
+  }
+  .intel-metric-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .metric-block {
+    padding: 12px 14px;
+  }
+  .metric-num {
+    font-size: 1.5rem;
+  }
+  .metric-label {
+    font-size: 0.66rem;
+  }
+  .hero-tagline {
+    font-size: 0.74rem;
+    letter-spacing: 0.08em;
+  }
+  .hero-glitch-title {
+    font-size: clamp(2rem, 7.8vw, 3.2rem);
+  }
+  .photo-tele-pill {
+    padding: 5px 10px;
+    font-size: 0.62rem;
+  }
+  .hud-toast {
+    left: 14px;
+    right: 14px;
+    bottom: 18px;
+    max-width: calc(100% - 28px);
+  }
+  #preloader {
+    padding: 14px;
+  }
+  .cyber-term-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px 14px;
+  }
+  .cyber-telemetry-mid {
+    display: none;
+  }
+  .cyber-sub-status-bar {
+    font-size: 0.58rem;
+    padding: 6px 12px;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .cyber-term-body {
+    padding: 14px;
+    min-height: 150px;
+    font-size: 0.78rem;
+    line-height: 1.6;
+  }
+  .cyber-term-footer {
+    padding: 10px 14px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .quantum-meter-wrap {
+    justify-content: space-between;
+  }
+  .quantum-track {
+    width: 110px;
+  }
+  .bypass-cue {
+    text-align: center;
+  }
+  .footer-base-panel {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+  }
+  .social-trans-links {
+    justify-content: center;
+    gap: 12px;
+  }
+  .back-to-top {
+    bottom: 20px;
+    right: 18px;
+    width: 40px;
+    height: 48px;
+  }
+}
+
+/* --- 6. Phones & Portrait Mobile (361px - 480px) --- */
+@media (max-width: 480px) {
+  .cyber-section {
+    padding: 65px 4vw;
+  }
+  .hero-section {
+    padding: 88px 4vw 24px;
+  }
+  .hero-photo-stage {
+    padding-top: 80px;
+  }
+  .hud-photo-frame {
+    height: min(40vh, 300px);
+    max-width: 78vw;
+  }
+  .photo-under-telemetry {
+    margin-top: 10px;
+    gap: 6px;
+  }
+  .photo-tele-pill {
+    padding: 4px 8px;
+    font-size: 0.58rem;
+  }
+  .hero-tagline {
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+  }
+  .hero-glitch-title {
+    font-size: clamp(1.9rem, 7.8vw, 2.7rem);
+    line-height: 0.95;
+  }
+  .hero-social-prominent-bar {
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .hero-soc-pill {
+    padding: 8px 12px;
+    gap: 6px;
+  }
+  .hero-soc-pill .svg-soc-mark {
+    width: 16px;
+    height: 16px;
+  }
+  .hero-soc-pill .soc-name {
+    font-size: 0.74rem;
+  }
+  .hero-soc-pill .soc-handle {
+    font-size: 0.62rem;
+  }
+  .dossier-holo-chamber {
+    height: 330px;
+  }
+  .dossier-profile-img {
+    max-height: 270px;
+  }
+  .holo-node-tag {
+    font-size: 0.56rem;
+    padding: 3px 6px;
+  }
+  .node-head {
+    top: 10%;
+    right: 8px;
+  }
+  .node-chest {
+    top: 44%;
+    left: 8px;
+  }
+  .node-arm {
+    bottom: 14%;
+    right: 8px;
+  }
+  .intel-headline {
+    font-size: 1.35rem;
+  }
+  .intel-body {
+    font-size: 0.88rem;
+  }
+  .project-wheel-chamber {
+    height: 450px;
+    perspective: 900px;
+    overflow: hidden;
+    margin-bottom: 40px;
+  }
+  .wheel-rotary-ring,
+  .wheel-card-slot {
+    width: min(280px, 84vw);
+    height: 395px;
+  }
+  .wheel-card-slot[data-index="0"] { transform: rotateY(0deg) translateZ(180px); }
+  .wheel-card-slot[data-index="1"] { transform: rotateY(90deg) translateZ(180px); }
+  .wheel-card-slot[data-index="2"] { transform: rotateY(180deg) translateZ(180px); }
+  .wheel-card-slot[data-index="3"] { transform: rotateY(270deg) translateZ(180px); }
+  .wheel-card {
+    padding: 12px;
+  }
+  .wheel-card-imgwrap {
+    height: 130px;
+  }
+  .wheel-card-title {
+    font-size: 1.08rem;
+  }
+  .wheel-card-desc {
+    font-size: 0.72rem;
+    line-height: 1.35;
+  }
+  .wheel-hologram-pedestal {
+    width: 260px;
+    height: 260px;
+    bottom: -20px;
+  }
+  .ring-outer { width: 240px; height: 240px; }
+  .ring-mid { width: 180px; height: 180px; }
+  .holo-radar-sweep { width: 220px; height: 220px; }
+  .projects-hud-ctrl-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 10px 12px;
+    margin: 18px 0 24px;
+  }
+  .wheel-mode-switcher {
+    width: 100%;
+    justify-content: center;
+  }
+  .ctrl-mode-btn {
+    flex: 1;
+    justify-content: center;
+    padding: 7px 8px;
+    font-size: 0.68rem;
+  }
+  .wheel-action-tools {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .operations-stream {
+    gap: 45px;
+  }
+  .op-window-bar {
+    padding: 8px 12px;
+  }
+  .op-window-title {
+    font-size: 0.64rem;
+  }
+  .op-headline {
+    font-size: 1.3rem;
+  }
+  .op-narrative {
+    font-size: 0.86rem;
+  }
+  .btn-github-link {
+    width: 100%;
+    justify-content: center;
+    padding: 8px 14px;
+    font-size: 0.74rem;
+  }
+  .footer-cta-heading {
+    font-size: clamp(1.8rem, 8vw, 2.6rem);
+  }
+  .mega-social-card {
+    padding: 14px 16px;
+    gap: 14px;
+  }
+  .mega-icon-box {
+    width: 44px;
+    height: 44px;
+  }
+  .svg-mega-brand {
+    width: 22px;
+    height: 22px;
+  }
+  .mega-title {
+    font-size: 1.05rem;
+  }
+  .mega-url {
+    font-size: 0.7rem;
+  }
+  .mobile-social-pill {
+    padding: 8px 14px;
+    font-size: 0.74rem;
+  }
+}
+
+/* --- 7. Narrow / Foldable Phones (320px - 360px) --- */
+@media (max-width: 360px) {
+  .hero-glitch-title {
+    font-size: 1.85rem;
+  }
+  .arsenal-grid {
+    grid-template-columns: 1fr;
+  }
+  .intel-metric-grid {
+    grid-template-columns: 1fr;
+  }
+  .wheel-card-slot,
+  .wheel-rotary-ring {
+    width: 250px;
+    height: 380px;
+  }
+  .wheel-card-slot[data-index="0"] { transform: rotateY(0deg) translateZ(155px); }
+  .wheel-card-slot[data-index="1"] { transform: rotateY(90deg) translateZ(155px); }
+  .wheel-card-slot[data-index="2"] { transform: rotateY(180deg) translateZ(155px); }
+  .wheel-card-slot[data-index="3"] { transform: rotateY(270deg) translateZ(155px); }
+}
+
+/* --- 8. Touch & Stylus Devices Pointer Tuning --- */
+@media (hover: none) and (pointer: coarse) {
+  .custom-cursor,
+  .custom-cursor-dot {
+    display: none !important;
+  }
+  body {
+    cursor: auto;
+  }
+  .btn-hud-resume,
+  .btn-cyber-mini,
+  .accordion-trigger,
+  .btn-hud-primary,
+  .btn-hud-secondary,
+  .back-to-top,
+  .btn-cyber-primary,
+  .btn-dossier-filter,
+  .ctrl-mode-btn,
+  .wheel-nav-arrow,
+  .wheel-dot {
+    cursor: pointer;
   }
 }
