@@ -45,10 +45,11 @@
     if (typeof triggerParticleAssembly === "function") {
       triggerParticleAssembly();
     }
-    // Failsafe: ensures real photo is 100% visible after intro
+    // Failsafe: ensures real photo shard matrix completes assembly
     setTimeout(() => {
-      const p = document.getElementById("hero-hd-photo");
-      if (p) p.classList.add("assembled");
+      if (typeof triggerParticleAssembly === "function" && !isAssembling && !isAssembled) {
+        triggerParticleAssembly();
+      }
     }, 2400);
   }
 
@@ -275,11 +276,26 @@
       const frameRect = frameEl.getBoundingClientRect();
       const canvasRect = particleCanvas.getBoundingClientRect();
       if (frameRect.width > 50 && frameRect.height > 50) {
-        imgRenderParams.offsetX = Math.floor(frameRect.left - canvasRect.left);
-        imgRenderParams.offsetY = Math.floor(frameRect.top - canvasRect.top);
+        const newOffsetX = Math.floor(frameRect.left - canvasRect.left);
+        const newOffsetY = Math.floor(frameRect.top - canvasRect.top);
+        const diffX = newOffsetX - imgRenderParams.offsetX;
+        const diffY = newOffsetY - imgRenderParams.offsetY;
+        if ((diffX !== 0 || diffY !== 0) && shards.length > 0) {
+          for (let i = 0; i < shards.length; i++) {
+            shards[i].baseX += diffX;
+            shards[i].baseY += diffY;
+            shards[i].startX += diffX;
+            shards[i].startY += diffY;
+          }
+        }
+        imgRenderParams.offsetX = newOffsetX;
+        imgRenderParams.offsetY = newOffsetY;
         imgRenderParams.drawW = Math.round(frameRect.width);
         imgRenderParams.drawH = Math.round(frameRect.height);
       }
+    }
+    if (shards.length === 0 && typeof buildPhotoShards === "function") {
+      buildPhotoShards();
     }
     isAssembling = true;
     assembleStartTime = performance.now();
@@ -568,27 +584,21 @@
         if (t >= 1) {
           assembleProgress = 1;
           isAssembled = true;
-          if (heroHdPhoto) heroHdPhoto.classList.add("assembled");
         }
       }
 
       // Check state:
       const isAtRest = assembleProgress >= 1 && smoothedScrollScatter === 0;
 
-      if (isAtRest) {
-        if (heroHdPhoto) {
-          heroHdPhoto.classList.add("assembled");
-          heroHdPhoto.style.opacity = "1";
-        }
+      if (isAtRest && heroImgRef) {
         // Photo is fully assembled and at rest at top of page
         const mouseNearPhoto = 
-          heroImgRef &&
           mouse.x >= imgRenderParams.offsetX - 40 &&
           mouse.x <= imgRenderParams.offsetX + imgRenderParams.drawW + 40 &&
           mouse.y >= imgRenderParams.offsetY - 40 &&
           mouse.y <= imgRenderParams.offsetY + imgRenderParams.drawH + 40;
 
-        if (!mouseNearPhoto && heroImgRef) {
+        if (!mouseNearPhoto) {
           // 100% Solid, razor-sharp, photorealistic full render - fully formed! (0.01ms speed)
           pCtx.drawImage(
             heroImgRef,
@@ -626,12 +636,23 @@
         }
       } else {
         // Scrolling down: photo shatters into micro-squares with silky smooth damped dispersion
-        if (heroHdPhoto) {
-          heroHdPhoto.style.opacity = Math.max(0, 1 - smoothedScrollScatter * 2.5);
-        }
         for (let i = 0; i < shards.length; i++) {
           shards[i].update(assembleProgress, smoothedScrollScatter, mouse);
           shards[i].draw(pCtx);
+        }
+        // Continuity blend when near rest (< 0.08 scatter) ensures silky smooth continuous motion
+        if (smoothedScrollScatter < 0.08 && heroImgRef) {
+          const solidBlend = (1 - smoothedScrollScatter / 0.08);
+          pCtx.save();
+          pCtx.globalAlpha = Math.max(0, Math.min(1, solidBlend * 0.75));
+          pCtx.drawImage(
+            heroImgRef,
+            imgRenderParams.offsetX,
+            imgRenderParams.offsetY,
+            imgRenderParams.drawW,
+            imgRenderParams.drawH
+          );
+          pCtx.restore();
         }
       }
 
@@ -646,6 +667,10 @@
         const scrollY = window.scrollY;
         const heroHeight = window.innerHeight;
         targetScrollScatter = Math.min(scrollY / (heroHeight * 0.62), 2.2);
+        if (!isAssembled) {
+          assembleProgress = 1;
+          isAssembled = true;
+        }
       },
       { passive: true }
     );
