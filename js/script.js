@@ -404,19 +404,19 @@
         let offsetY;
 
         if (pWidth > 960) {
-          // Desktop: enlarged photo on the right side
-          targetH = Math.min(pHeight * 0.86, 850);
+          // Desktop: enlarged photo on the right side, scaling cleanly with viewport
+          targetH = Math.min(pHeight * 0.74, 700);
           targetW = Math.round(targetH * naturalRatio);
-          const maxAllowedW = Math.min(pWidth * 0.46, 580);
+          const maxAllowedW = Math.min(pWidth * 0.44, 520);
           if (targetW > maxAllowedW) {
             targetW = Math.round(maxAllowedW);
             targetH = Math.round(targetW / naturalRatio);
           }
           offsetX = Math.floor(pWidth - targetW - Math.max(pWidth * 0.05, 36));
-          offsetY = Math.floor((pHeight - targetH) / 2);
+          offsetY = Math.floor((pHeight - (targetH + 50)) / 2);
         } else {
-          // Mobile & Tablet: matches .hud-photo-frame with height: min(44vh, 340px)
-          targetH = Math.min(pHeight * 0.44, 340);
+          // Mobile & Tablet: matches .hud-photo-frame with height: min(42vh, 320px)
+          targetH = Math.min(pHeight * 0.42, 320);
           targetW = Math.round(targetH * naturalRatio);
           const maxAllowedW = Math.min(pWidth * 0.75, 270);
           if (targetW > maxAllowedW) {
@@ -425,6 +425,19 @@
           }
           offsetX = Math.floor((pWidth - targetW) / 2);
           offsetY = 85;
+        }
+
+        // Exact DOM sync with .hud-photo-frame if layout is active (ensures 100% precision across browser zoom)
+        const frameEl = document.getElementById("hud-photo-frame");
+        if (frameEl) {
+          const frameRect = frameEl.getBoundingClientRect();
+          const canvasRect = particleCanvas.getBoundingClientRect();
+          if (frameRect.width > 50 && frameRect.height > 50) {
+            offsetX = Math.floor(frameRect.left - canvasRect.left);
+            offsetY = Math.floor(frameRect.top - canvasRect.top);
+            targetW = Math.round(frameRect.width);
+            targetH = Math.round(frameRect.height);
+          }
         }
 
         const drawW = targetW;
@@ -739,39 +752,16 @@
     update3DModelStage();
   }
 
-  // 3D Filter mode buttons
-  const filterBtns = {
-    holo: document.getElementById("filter-holo"),
-    scan: document.getElementById("filter-scan"),
-    xray: document.getElementById("filter-xray")
-  };
-
-  function set3DHoloFilter(mode) {
-    Object.values(filterBtns).forEach((b) => {
-      if (b) b.classList.remove("active");
-    });
-
-    if (mode === "holo") {
-      if (filterBtns.holo) filterBtns.holo.classList.add("active");
-      if (dossierImg) dossierImg.style.filter = "drop-shadow(0 0 25px rgba(0, 240, 255, 0.45))";
-      if (dossierLaser) dossierLaser.style.display = "block";
-      if (dossierStatus) dossierStatus.textContent = "3D HOLOGRAPHIC RIG ENGAGED";
-    } else if (mode === "scan") {
-      if (filterBtns.scan) filterBtns.scan.classList.add("active");
-      if (dossierImg) dossierImg.style.filter = "contrast(1.25) saturate(1.3) hue-rotate(90deg) drop-shadow(0 0 30px rgba(0, 255, 136, 0.5))";
-      if (dossierLaser) dossierLaser.style.display = "block";
-      if (dossierStatus) dossierStatus.textContent = "ACTIVE LiDAR BIOMETRIC SCAN";
-    } else if (mode === "xray") {
-      if (filterBtns.xray) filterBtns.xray.classList.add("active");
-      if (dossierImg) dossierImg.style.filter = "invert(0.92) hue-rotate(180deg) contrast(1.6) drop-shadow(0 0 35px rgba(0, 240, 255, 0.7))";
-      if (dossierLaser) dossierLaser.style.display = "block";
-      if (dossierStatus) dossierStatus.textContent = "QUANTUM X-RAY MATRIX SPECTRUM";
-    }
+  // 3D Holographic Chamber Filter
+  if (dossierImg) {
+    dossierImg.style.filter = "drop-shadow(0 0 25px rgba(0, 240, 255, 0.45))";
   }
-
-  if (filterBtns.holo) filterBtns.holo.addEventListener("click", () => set3DHoloFilter("holo"));
-  if (filterBtns.scan) filterBtns.scan.addEventListener("click", () => set3DHoloFilter("scan"));
-  if (filterBtns.xray) filterBtns.xray.addEventListener("click", () => set3DHoloFilter("xray"));
+  if (dossierLaser) {
+    dossierLaser.style.display = "block";
+  }
+  if (dossierStatus) {
+    dossierStatus.innerHTML = '<span class="live-radar-dot"></span> 3D HOLOGRAPHIC BIOMETRIC DOSSIER // ACTIVE';
+  }
 
   /* =====================================================================
      4B. 3D ROTARY ANIMATION WHEEL & ARRANGE CONTROLLER
