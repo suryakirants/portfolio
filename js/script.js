@@ -259,14 +259,26 @@
 
   triggerParticleAssembly = function () {
     if (isAssembling || isAssembled) return;
+    const frameEl = document.getElementById("hud-photo-frame");
+    if (frameEl && particleCanvas && imgRenderParams) {
+      const frameRect = frameEl.getBoundingClientRect();
+      const canvasRect = particleCanvas.getBoundingClientRect();
+      if (frameRect.width > 50 && frameRect.height > 50) {
+        imgRenderParams.offsetX = Math.floor(frameRect.left - canvasRect.left);
+        imgRenderParams.offsetY = Math.floor(frameRect.top - canvasRect.top);
+        imgRenderParams.drawW = Math.round(frameRect.width);
+        imgRenderParams.drawH = Math.round(frameRect.height);
+      }
+    }
     isAssembling = true;
     assembleStartTime = performance.now();
   };
 
   if (particleCanvas && heroHdPhoto) {
     const pCtx = particleCanvas.getContext("2d");
-    let pWidth = (particleCanvas.width = window.innerWidth);
-    let pHeight = (particleCanvas.height = window.innerHeight);
+    const heroSec = document.getElementById("hero");
+    let pWidth = (particleCanvas.width = heroSec ? heroSec.clientWidth : window.innerWidth);
+    let pHeight = (particleCanvas.height = heroSec ? Math.max(heroSec.clientHeight, window.innerHeight) : window.innerHeight);
 
     let shards = [];
     let heroImgRef = null;
@@ -276,8 +288,9 @@
     let smoothedScrollScatter = 0;
 
     window.addEventListener("resize", () => {
-      pWidth = particleCanvas.width = window.innerWidth;
-      pHeight = particleCanvas.height = window.innerHeight;
+      const hSec = document.getElementById("hero");
+      pWidth = particleCanvas.width = hSec ? hSec.clientWidth : window.innerWidth;
+      pHeight = particleCanvas.height = hSec ? Math.max(hSec.clientHeight, window.innerHeight) : window.innerHeight;
       buildPhotoShards();
     });
 
@@ -415,8 +428,8 @@
           offsetX = Math.floor(pWidth - targetW - Math.max(pWidth * 0.05, 36));
           offsetY = Math.floor((pHeight - (targetH + 50)) / 2);
         } else {
-          // Mobile & Tablet: matches .hud-photo-frame with height: min(42vh, 320px)
-          targetH = Math.min(pHeight * 0.42, 320);
+          // Mobile & Tablet: matches .hud-photo-frame with height: min(36vh, 275px)
+          targetH = Math.min(pHeight * 0.36, 275);
           targetW = Math.round(targetH * naturalRatio);
           const maxAllowedW = Math.min(pWidth * 0.75, 270);
           if (targetW > maxAllowedW) {
@@ -424,7 +437,7 @@
             targetH = Math.round(targetW / naturalRatio);
           }
           offsetX = Math.floor((pWidth - targetW) / 2);
-          offsetY = 85;
+          offsetY = 160;
         }
 
         // Exact DOM sync with .hud-photo-frame if layout is active (ensures 100% precision across browser zoom)

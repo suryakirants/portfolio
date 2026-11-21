@@ -3049,63 +3049,136 @@ header#main-header.scrolled {
     padding: 90px 5vw;
   }
   .hero-section {
-    padding: 100px 5vw 40px;
-    min-height: 100vh;
-  }
-  .hero-photo-stage {
+    padding: 95px 4vw 36px;
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding-top: 85px;
-    padding-right: 0;
-  }
-  .hud-photo-frame {
-    height: min(44vh, 340px);
-    width: auto;
-    max-width: 75vw;
-  }
-  .hero-hd-photo {
-    max-height: 100%;
-    width: auto;
-  }
-  .photo-under-telemetry {
-    max-width: 90vw;
-    gap: 10px;
-    margin-top: 12px;
+    position: relative;
+    overflow: hidden;
+    gap: 0;
   }
   .hero-content-wrapper {
-    min-height: auto;
-    height: 100%;
-    justify-content: space-between;
+    display: contents;
+  }
+  .hero-hud-top {
+    order: 1;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 5;
+    pointer-events: auto;
+  }
+  .hud-status-badge {
+    max-width: 100%;
+    text-align: center;
   }
   .hero-hud-bottom {
-    margin-top: auto;
-    padding-top: 20px;
+    display: contents;
+  }
+  .hero-tagline {
+    order: 2;
+    font-size: clamp(0.72rem, 2.2vw, 0.82rem);
+    letter-spacing: 0.12em;
+    text-align: center;
+    margin-bottom: 6px;
+    position: relative;
+    z-index: 5;
+    pointer-events: auto;
+    max-width: 100%;
+  }
+  .hero-glitch-title {
+    order: 3;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-  }
-  .hero-tagline {
-    font-size: 0.82rem;
-    letter-spacing: 0.12em;
-    text-align: center;
-  }
-  .hero-glitch-title {
-    max-width: 100%;
-    align-items: center;
-    text-align: center;
-    line-height: 1.06;
+    line-height: 1.05;
+    padding: 2px 0 6px;
+    margin-bottom: 14px;
+    position: relative;
+    z-index: 5;
+    pointer-events: auto;
   }
   .title-line-1,
   .title-line-2 {
-    font-size: clamp(2rem, 7.5vw, 3.8rem);
+    font-size: clamp(2rem, 7.5vw, 3.4rem);
     white-space: nowrap;
     text-align: center;
+    line-height: 1.05;
+  }
+  .hero-photo-stage {
+    order: 4;
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 4px 0 16px;
+    position: relative;
+    z-index: 4;
+    pointer-events: auto;
+  }
+  .hud-photo-frame {
+    position: relative;
+    aspect-ratio: 682 / 1024;
+    height: min(36vh, 275px);
+    width: auto;
+    max-width: 75vw;
+    margin: 0 auto;
+    pointer-events: auto;
+  }
+  .hero-hd-photo {
+    max-height: 100%;
+    width: auto;
+    display: block;
+  }
+  .photo-hud-badge {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 8px;
+    white-space: nowrap;
+    font-size: 0.56rem;
+    padding: 3px 8px;
+  }
+  .photo-under-telemetry {
+    width: 100%;
+    max-width: 90vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 10px;
+    position: relative;
+    z-index: 4;
+    pointer-events: auto;
+    flex-wrap: wrap;
+  }
+  .photo-tele-pill {
+    padding: 5px 10px;
+    font-size: 0.62rem;
   }
   .hero-social-prominent-bar {
+    order: 5;
+    display: flex;
+    align-items: center;
     justify-content: center;
     gap: 12px;
-    margin-top: 16px;
+    width: 100%;
+    max-width: 440px;
+    margin-top: 10px;
+    position: relative;
+    z-index: 5;
+    pointer-events: auto;
+    flex-wrap: wrap;
   }
   .operation-row,
   .operation-row.reverse {
@@ -3333,38 +3406,40 @@ header#main-header.scrolled {
     padding: 65px 4vw;
   }
   .hero-section {
-    padding: 88px 4vw 24px;
+    padding: 76px 4vw 24px;
   }
   .hero-photo-stage {
-    padding-top: 80px;
+    padding-top: 0;
+    margin: 4px 0 14px;
   }
   .hud-photo-frame {
-    height: min(40vh, 300px);
+    height: min(32vh, 235px);
     max-width: 78vw;
   }
   .photo-under-telemetry {
-    margin-top: 10px;
+    margin-top: 8px;
     gap: 6px;
   }
   .photo-tele-pill {
     padding: 4px 8px;
-    font-size: 0.58rem;
+    font-size: 0.56rem;
   }
   .hero-tagline {
     font-size: 0.68rem;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.08em;
   }
   .hero-glitch-title {
-    line-height: 1.08;
+    margin-bottom: 10px;
+    line-height: 1.06;
   }
   .title-line-1,
   .title-line-2 {
-    font-size: clamp(1.65rem, 7.2vw, 2.4rem);
-    line-height: 1.08;
+    font-size: clamp(1.65rem, 7.2vw, 2.3rem);
+    line-height: 1.06;
   }
   .hero-social-prominent-bar {
     gap: 8px;
-    margin-top: 12px;
+    margin-top: 10px;
   }
   .hero-soc-pill {
     padding: 8px 12px;
@@ -3517,7 +3592,18 @@ header#main-header.scrolled {
 @media (max-width: 360px) {
   .title-line-1,
   .title-line-2 {
-    font-size: 1.55rem;
+    font-size: 1.45rem;
+  }
+  .hud-photo-frame {
+    height: 205px;
+  }
+  .hero-social-prominent-bar {
+    flex-direction: column;
+    width: 100%;
+    align-items: stretch;
+  }
+  .hero-soc-pill {
+    justify-content: center;
   }
   .arsenal-grid {
     grid-template-columns: 1fr;
